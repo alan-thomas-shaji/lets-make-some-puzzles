@@ -2,12 +2,10 @@
     export let num;
     export let index_i;
     export let index_j;
-    export let changed;
-    export let enabled;
 
     function getStyle(){
         var style = "";
-        if(index_i == 2){
+        if(index_i == 1 || index_i == 3){
             style += "border-bottom: 3px solid rgb(1, 119, 255);";
             console.log(index_i, index_j);
         }
@@ -20,10 +18,10 @@
 </script>
 
 <td>
-    <input type="text" maxlength="1" disabled={!enabled} 
+    <input type="text" maxlength="1" disabled={num != null} 
         value="{(num == null) ? "" : num}" 
         style={getStyle()}
-        on:change={(val) => changed(index_i, index_j, val.target.value)}/>
+    />
 </td>
 
 <style>

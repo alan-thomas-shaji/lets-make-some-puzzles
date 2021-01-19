@@ -1,19 +1,8 @@
 <script>
 	import { faPhoneSquareAlt } from '@fortawesome/free-solid-svg-icons';
-	import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText } from 'fontawesome-svelte';
+	import { FontAwesomeIcon } from 'fontawesome-svelte';
 	export let sudoku;
 	import SudokuCell from "./SudokuCell.svelte";
-
-	function changed(i, j, val){
-		sudoku[i][j] = val;
-	}
-
-	var enabled = [];
-	for(var i=0; i< sudoku.length; i++){
-		enabled.push([]);
-		for(var j=0; j < sudoku[i].length; j++)
-			enabled[i].push(sudoku[i][j] == null);
-	}
 
 	var ansHashed = "359c74260eeec18bfcccc039831d128d3d484a64b8a1dd1c53bc8d0a3ec89f0c";
 
@@ -26,7 +15,7 @@
 	}
 
 	async function checkAns(){
-		if(await encrypt(document.getElementsByName("ans")[0].value) == ansHashed)
+		if((await encrypt(document.getElementsByName("ans")[0].value)) == ansHashed)
 			alert("Congrats");
 		else
 			alert("Try Again");
@@ -47,7 +36,6 @@
 			<tr>
 				{#each {length: sudoku.length} as _,j}
 					<SudokuCell 
-						enabled={enabled[i][j]} changed={changed} 
 						index_i={i} 
 						index_j={j} 
 						num={sudoku[i][j]}/>
