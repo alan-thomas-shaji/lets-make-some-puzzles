@@ -84,6 +84,7 @@
         object-position: center;
       background-color: transparent;
     }
+    /*
      :global(body) {
           position:relative;
           font-size:1.5rem;
@@ -97,6 +98,7 @@
           background: linear-gradient(-45deg, #050705, #0c2c0c)
           
       } 
+    */
       input {
         background-color: transparent;
       }

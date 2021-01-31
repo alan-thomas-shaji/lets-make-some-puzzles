@@ -88,10 +88,11 @@
 </main>
 
 <style>
+  /*
   :global(body) {
     background-color: black;
   }
-
+  */
   main {
     color: blue;
     text-align: center;

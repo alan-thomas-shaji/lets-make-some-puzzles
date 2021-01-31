@@ -1,5 +1,6 @@
 <script>
   import { Router, Link, Route } from "svelte-routing";  // Import your files
+  import Bomb from "./routes/Bomb/App.svelte";
   import Cipher from "./routes/Cipher/Cipher.svelte";
   import Picross from "./routes/Picross/Puzzle.svelte";
   import Sudoku from "./routes/Sudoku/Sudoku.svelte";
@@ -20,10 +21,12 @@
     <Link to="sudoku">Sudoku</Link>
     <Link to="picross">Picross</Link>
     <Link to="cipher">Cipher</Link>
+    <Link to="bomb">Bomb</Link>
   </nav>
   <div>
     <Route path="sudoku" component={Sudoku}/>
     <Route path="picross" component={Picross}></Route>
     <Route path="cipher" component={Cipher}></Route>
+    <Route path="bomb" component={Bomb}/>
   </div>
 </Router>
