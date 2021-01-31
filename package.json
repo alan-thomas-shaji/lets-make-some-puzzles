@@ -17,7 +17,11 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "autoprefixer": "^9.8.6",
+    "fontawesome": "^5.6.3",
+    "fontawesome-svelte": "^2.0.1",
     "sirv-cli": "^1.0.0",
     "svelte-preprocess": "^4.2.1",
     "svelte-router-spa": "^5.8.4",

@@ -1,6 +1,7 @@
 <script>
-  import { Router, Route } from "svelte-routing";
-  // Import your file
+  import { Router, Link, Route } from "svelte-routing";  // Import your files
+  import Sudoku from "./routes/Sudoku.svelte";
+  import Home from "./routes/Home.svelte";
   export let url = "";
 </script>
 
@@ -14,10 +15,10 @@
   </style>
 
 <Router url={url}>
+  <nav>
+    <Link to="sudoku">Sudoku</Link>
+  </nav>
   <div>
-    <!--
-      Add Routes here
-    <Route path="/" component="{Main}" />
-    -->
+    <Route path="sudoku" component={Sudoku}/>
   </div>
 </Router>
