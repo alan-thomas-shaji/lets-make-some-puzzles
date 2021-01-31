@@ -9,7 +9,7 @@
         [5, null, 2, null, null, 6],
         [null, null, null, 5, null, 1]
     ];
-    import SudokuCell from "./components/SudokuCell.svelte";
+    import SudokuCell from "./SudokuCell.svelte";
     
 	var ansHashed = "359c74260eeec18bfcccc039831d128d3d484a64b8a1dd1c53bc8d0a3ec89f0c";
 
