@@ -1,5 +1,8 @@
 <script>
-  export let name;
+  import { Router, Route } from "svelte-routing";
+  import Main from "./routes/Main.svelte";
+  import Another from "./routes/Another.svelte";
+  export let url = "";
 </script>
 
 <style global>
@@ -11,10 +14,10 @@
   @tailwind utilities;
 </style>
 
-<main>
-  <h1>Hello {name}!</h1>
-  <p class="p-2">
-    Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
-    how to build Svelte apps.
-  </p>
-</main>
+<Router url={url}>
+  <a href="/another">Another</a>
+  <div>
+    <Route path="/" component="{Main}" />
+    <Route path="/another" component="{Another}" />
+  </div>
+</Router>
