@@ -52,8 +52,8 @@
 	</table>
 
 	<div id="ans" class="m-2 p-2 flex items-center justify-center">
-		<input class="mt-0 mb-0 mr-4" type="text" placeholder="Enter Phone Number" name="ans">
-		<span style="color: green" class="cursor-pointer text-3xl" id="call-icon" on:click={() => checkAns()}><FontAwesomeIcon icon={faPhoneSquareAlt}/></span>
+		<input class="mt-0 mb-0 mr-4 p-2" type="text" placeholder="Enter Phone Number" name="ans">
+		<span style="color: green" class="cursor-pointer text-5xl" id="call-icon" on:click={() => checkAns()}><FontAwesomeIcon icon={faPhoneSquareAlt}/></span>
 	</div>
 </div>
 

@@ -15,37 +15,24 @@
     }
 </script>
 
-<td>
-    <input type="text" maxlength="1" disabled={num != null} 
+<td class="m-0 border-2 border-black">
+    <input id="x783264874325" type="text" maxlength="1" disabled={num != null} 
         value="{(num == null) ? "" : num}" 
         style={getStyle()}
+        class="border-0 p-2 m-0 text-center text-white h-16 w-16 text-2xl bg-blue-500"
     />
 </td>
 
 <style>
-    td input:disabled{
+    #x783264874325:disabled{
         background-color:white;
         color: black;
     }
-    input:focus{
+    #x783264874325:focus{
         border: none;
+        outline: none;
     }
-    td input{
-        background-color:cornflowerblue;
-        color: black;
-        margin: 0;
-        border: none;
-        width: 50px;
-        height: 50px;
-        text-align: center;
-        padding: 5px;
-    }
-    td input:hover{
-        cursor: pointer;
+    #x783264874325:hover{
         background-color: azure;
-    }
-    td{
-        margin: 0;
-        border: 1px solid black;
     }
 </style>
