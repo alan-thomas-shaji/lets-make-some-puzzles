@@ -31,14 +31,14 @@
 </script>
 
 
-<div id="sudoku-wrap">
+<div id="sudoku-wrap" class="p-4 text-lg text-center">
 	<h1>Puzzle Heading</h1>
-	<div id="content">
+	<div id="content" class="m-2 p-2">
 		<p>Phone number is of format XXXXXX1234</p>
 		<p>XXXXXX is the first row of the Sudoku</p>	
 	</div>
 
-	<table cellpadding="0" cellspacing="0" align="center">
+	<table cellpadding="0" cellspacing="0" align="center" class="border-collapse border-black border-2">
 		{#each {length: sudoku.length} as _, i}
 			<tr>
 				{#each {length: sudoku.length} as _,j}
@@ -51,56 +51,9 @@
 		{/each}
 	</table>
 
-	<div id="ans">
-		<input type="text" placeholder="Enter Phone Number" name="ans">
-		<span id="call-icon" on:click={() => checkAns()}><FontAwesomeIcon icon={faPhoneSquareAlt}/></span>
+	<div id="ans" class="m-2 p-2 flex items-center justify-center">
+		<input class="mt-0 mb-0 mr-4" type="text" placeholder="Enter Phone Number" name="ans">
+		<span style="color: green" class="cursor-pointer text-3xl" id="call-icon" on:click={() => checkAns()}><FontAwesomeIcon icon={faPhoneSquareAlt}/></span>
 	</div>
 </div>
 
-<style>
-	#sudoku-wrap {
-		color: black;
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-		font-size: 18px;
-	}
-
-	#call-icon{
-		font-size: 38px;
-		color: green;
-	}
-
-	#call-icon:hover{
-		cursor: pointer;
-	}
-
-	#ans{
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	table{
-		border: 3px solid black;
-		border-collapse:collapse;
-	}
-
-	input{
-		margin-top: 0;
-		margin-bottom: 0;
-		margin-right: 5px;
-	}
-
-	div{
-		margin: 10px;
-		padding: 20px;
-	}
-
-	@media (min-width: 640px) {
-		#sudoku-wrap {
-			max-width: none;
-		}
-	}
-</style>

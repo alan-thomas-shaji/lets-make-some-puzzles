@@ -7,11 +7,9 @@
         var style = "";
         if(index_i == 1 || index_i == 3){
             style += "border-bottom: 3px solid black;";
-            console.log(index_i, index_j);
         }
         if(index_j == 2){
             style += "border-right: 3px solid black;";
-            console.log(index_i, index_j);
         }
         return style;
     }
