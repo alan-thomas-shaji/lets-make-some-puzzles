@@ -3,15 +3,11 @@
 	import Game from "./Game.svelte";
 	export let name;
 	let level = 10;
-	import { onMount } from 'svelte';
-	let count = 100;
-	let res = count;
-    onMount(() => {
-    const interval = setInterval(() => (count > 0) ? count-- : count, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  });
+	
+  function pop()
+  {
+	  alert("Your time is over");
+  }
 </script>
 
 <main>
@@ -21,14 +17,6 @@
 	<Bomb />
 	<br>
 	<Game />
-	<div class="App">
-		<header class="Timer">
-			You have <code>{count}</code> seconds
-			{#if {count} === 0 }
-				Your time has exceeded!!!	
-			{/if}
-		</header>
-	</div>
 </main>
 
 <style>
@@ -56,9 +44,4 @@
 		}
 	}
 
-	.Timer {
-		text-transform: uppercase;
-		color: black;
-		font-size: 3em;
-	}
 </style>
