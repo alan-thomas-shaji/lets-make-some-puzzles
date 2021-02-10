@@ -1,17 +1,15 @@
 <script>
-	import { faPhoneSquareAlt } from '@fortawesome/free-solid-svg-icons';
-	import { FontAwesomeIcon } from 'fontawesome-svelte';
 	var sudoku = [
-        [null, 3, null, 6, null, 5],
-        [null, 4, null, null, null, null],
-        [3, null, null, null, null, null],
-        [null, null, null, 3, 6, null],
-        [5, null, 2, null, null, 6],
-        [null, null, null, 5, null, 1]
+        [5, null, 6, null, null, null],
+        [null, null, null, null, 2, null],
+        [null, 6, null, null, null, null],
+        [null, null, null, 5, null, 1],
+        [null, null, 4, null, null, null],
+        [null, null, null, 1, null, 3]
     ];
     import SudokuCell from "./SudokuCell.svelte";
     
-	var ansHashed = "359c74260eeec18bfcccc039831d128d3d484a64b8a1dd1c53bc8d0a3ec89f0c";
+	var ansHashed = "8d2cbaf16d573434b9776abf73a1ae5ab0b7295a2449f3c469d76ccc66162173";
 
 	async function encrypt(input){
 		const msgBuffer = new TextEncoder().encode(input);
@@ -32,10 +30,9 @@
 
 
 <div id="sudoku-wrap" class="p-4 text-lg text-center">
-	<h1>Puzzle Heading</h1>
+	<h1 class="text-3xl">Puzzle</h1>
 	<div id="content" class="m-2 p-2">
-		<p>Phone number is of format XXXXXX1234</p>
-		<p>XXXXXX is the first row of the Sudoku</p>	
+		<p>Find the first row of the sudoku</p>	
 	</div>
 
 	<table cellpadding="0" cellspacing="0" align="center" class="border-collapse border-black border-2">
@@ -50,10 +47,9 @@
 			</tr>
 		{/each}
 	</table>
-
 	<div id="ans" class="m-2 p-2 flex items-center justify-center">
-		<input class="mt-0 mb-0 mr-4 p-2" type="text" placeholder="Enter Phone Number" name="ans">
-		<span style="color: green" class="cursor-pointer text-5xl" id="call-icon" on:click={() => checkAns()}><FontAwesomeIcon icon={faPhoneSquareAlt}/></span>
+		<input class="mt-0 mb-0 mr-4 p-2" type="text" placeholder="Enter Answer" name="ans">
+		<button class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline" on:click={() => checkAns()}>Go</button>
 	</div>
 </div>
 
