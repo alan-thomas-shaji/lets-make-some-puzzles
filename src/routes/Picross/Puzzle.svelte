@@ -41,157 +41,63 @@
 </script>
 
 <main>
-  <h1>Nonogram</h1>
-  <br />
-  <div id="content">
-    <p>Complete the puzzle and identify the logo thats generated.</p>
-  </div>
-  <br />
+  <div class="p-4 text-lg font-mono text-center">
+    <p class="text-3xl">Nonogram</p>
+    <br />
+    <div id="content">
+      <p>Complete the puzzle and identify the logo thats generated.</p>
+    </div>
+    <br />
 
-  <table id="hint" cellpadding="0" cellspacing="0" align="center">
-    {#each { length: hRow.length } as _, i}
-      <tr>
-        {#each { length: hRow[0].length } as _, j}
-          <td>{hRow[i][j] == 0 ? "" : hRow[i][j]}</td>
-        {/each}
-      </tr>
-    {/each}
-  </table>
-  <div class="row">
-    <div class="column">
-      <table id="hint" cellpadding="0" cellspacing="0" align="center">
-        {#each { length: hCol.length } as _, i}
-          <tr>
-            {#each { length: hCol[0].length } as _, j}
-              <td>{hCol[i][j] == 0 ? "" : hCol[i][j]}</td>
-            {/each}
-          </tr>
-        {/each}
-      </table>
+    <table id="hint" cellpadding="0" cellspacing="0" align="center">
+      {#each { length: hRow.length } as _, i}
+        <tr>
+          {#each { length: hRow[0].length } as _, j}
+            <td class="h-8 w-8">{hRow[i][j] == 0 ? "" : hRow[i][j]}</td>
+          {/each}
+        </tr>
+      {/each}
+    </table>
+    <div class="row">
+      <div class="column">
+        <table id="hint" cellpadding="0" cellspacing="0" align="center">
+          {#each { length: hCol.length } as _, i}
+            <tr>
+              {#each { length: hCol[0].length } as _, j}
+                <td class="h-8 w-8">{hCol[i][j] == 0 ? "" : hCol[i][j]}</td>
+              {/each}
+            </tr>
+          {/each}
+        </table>
+      </div>
+      <div class="column">
+        <table cellpadding="0" cellspacing="0" align="center">
+          {#each { length: grid.length } as _, i}
+            <tr>
+              {#each { length: grid.length } as _, j}
+                <Grid index_i={i} index_j={j} />
+              {/each}
+            </tr>
+          {/each}
+        </table>
+      </div>
     </div>
-    <div class="column">
-      <table cellpadding="0" cellspacing="0" align="center">
-        {#each { length: grid.length } as _, i}
-          <tr>
-            {#each { length: grid.length } as _, j}
-              <Grid index_i={i} index_j={j} />
-            {/each}
-          </tr>
-        {/each}
-      </table>
+    <div id="answer">
+      <input
+        class="mt-0 mb-0 mr-4 p-2"
+        type="text"
+        placeholder="Whose logo is it?"
+        name="answer"
+      />
+      <button
+        class="px-5 py-2 m-2 border border-green-800 text-white transition duration-500 ease select-none bg-green-700 rounded-lg focus:shadow-outline hover:bg-green-800 focus:outline-none focus:shadow-outline"
+        on:click={() => submit()}>Check</button
+      >
     </div>
-  </div>
-  <div id="answer">
-    <input type="text" placeholder="Whose logo is it?" name="answer" />
-    <button on:click={() => submit()}>Submit</button>
   </div>
 </main>
 
 <style>
-  /*
-  :global(body) {
-    background-color: black;
-  }
-  */
-  main {
-    color: blue;
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-
-  h1 {
-    display: inline;
-    position: relative;
-    text-transform: uppercase;
-    font-size: 100px;
-    letter-spacing: -5px;
-    color: rgba(0, 0, 255, 0.5);
-  }
-
-  h1:after {
-    content: "NONOGRAM";
-    position: absolute;
-    left: 10px;
-    top: 5px;
-    color: rgba(255, 0, 0, 0.5);
-  }
-
-  table {
-    border-collapse: collapse;
-    border: 3px solid rgba(0, 0, 255, 1);
-  }
-
-  td {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: rgba(255, 0, 0, 0.75);
-    border: none;
-    width: 22px;
-    height: 22px;
-    padding: 5px;
-  }
-
-  button {
-    border-radius: 10;
-    background-color: rgba(255, 0, 0, 0.5);
-    border: 2px solid rgba(255, 0, 0, 0.5);
-    vertical-align: middle;
-    margin: 0;
-    font-weight: normal;
-    font-size: 1.2em;
-    color: #fff;
-    padding: 0.3em 0.5em;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: rgba(0, 0, 255, 0.5);
-    border: 2px solid rgba(0, 0, 255, 0.5);
-  }
-
-  button:focus {
-    outline: none;
-    transform: scale(1.08);
-  }
-
-  input {
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-right: 15px;
-    color: #fff;
-    background-color: rgba(255, 0, 0, 0.5);
-    border: 2px solid rgba(255, 0, 0, 0.5);
-    transition: all 0.3s ease;
-  }
-
-  input:hover {
-    background-color: rgba(0, 0, 255, 0.5);
-    border: 2px solid rgba(0, 0, 255, 0.5);
-  }
-
-  input:focus {
-    outline: none;
-    transform: scale(1.08);
-  }
-
-  div {
-    margin: 10px;
-    padding: 0px;
-  }
-
-  #answer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  #hint {
-    border: 0px;
-    text-align: left;
-  }
   .row {
     display: flex;
     justify-content: center;
