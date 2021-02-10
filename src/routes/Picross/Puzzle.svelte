@@ -1,11 +1,9 @@
 <script>
   import Grid from "./Grid.svelte";
 
-  import { solutionGrid, rowHints, colHints } from "./utils";
+  import { solutionGrid } from "./utils";
 
   let grid = solutionGrid;
-  let hRow = rowHints;
-  let hCol = colHints;
 
   async function encrypt(input) {
     const msgBuffer = new TextEncoder().encode(input);
@@ -42,75 +40,39 @@
 
 <main>
   <div class="p-4 text-lg font-mono text-center">
-    <p class="text-3xl">Nonogram</p>
-    <br />
-    <div id="content">
-      <p>Complete the puzzle and identify the logo thats generated.</p>
+    <p class="text-6xl leading-normal mt-0 mb-2 text-pink-800">Nonogram</p>
+    <div>
+      <p
+        class="text-lg inline-block py-1 px-2 uppercase rounded-full text-teal-600 bg-teal-200 uppercase last:mr-0 mr-1"
+      >
+        Complete the puzzle and identify the logo thats generated.
+      </p>
     </div>
     <br />
 
-    <table id="hint" cellpadding="0" cellspacing="0" align="center">
-      {#each { length: hRow.length } as _, i}
-        <tr>
-          {#each { length: hRow[0].length } as _, j}
-            <td class="h-8 w-8">{hRow[i][j] == 0 ? "" : hRow[i][j]}</td>
-          {/each}
-        </tr>
-      {/each}
-    </table>
-    <div class="row">
-      <div class="column">
-        <table id="hint" cellpadding="0" cellspacing="0" align="center">
-          {#each { length: hCol.length } as _, i}
-            <tr>
-              {#each { length: hCol[0].length } as _, j}
-                <td class="h-8 w-8">{hCol[i][j] == 0 ? "" : hCol[i][j]}</td>
-              {/each}
-            </tr>
-          {/each}
-        </table>
-      </div>
-      <div class="column">
-        <table cellpadding="0" cellspacing="0" align="center">
-          {#each { length: grid.length } as _, i}
-            <tr>
-              {#each { length: grid.length } as _, j}
-                <Grid index_i={i} index_j={j} />
-              {/each}
-            </tr>
-          {/each}
-        </table>
-      </div>
+    <div>
+      <table cellpadding="0" cellspacing="0" align="center">
+        {#each { length: grid.length } as _, i}
+          <tr>
+            {#each { length: grid.length } as _, j}
+              <Grid index_i={i} index_j={j} val={grid[i][j]} />
+            {/each}
+          </tr>
+        {/each}
+      </table>
     </div>
-    <div id="answer">
+    <br />
+    <div class="mb-3 pt-0">
       <input
-        class="mt-0 mb-0 mr-4 p-2"
+        class="mt-0 mb-0 px-3 py-3 mr-4 p-2 placeholder-grey-400 text-grey-700 relative bg-white bg-white rounded text-sm border border-grey-400 outline-none focus:outline-none focus:shadow-outline"
         type="text"
         placeholder="Whose logo is it?"
         name="answer"
       />
       <button
-        class="px-5 py-2 m-2 border border-green-800 text-white transition duration-500 ease select-none bg-green-700 rounded-lg focus:shadow-outline hover:bg-green-800 focus:outline-none focus:shadow-outline"
+        class="px-5 py-2 m-2 border border-teal-800 text-white transition duration-500 ease select-none bg-teal-600 rounded-lg focus:shadow-outline hover:bg-teal-800 focus:outline-none focus:shadow-outline"
         on:click={() => submit()}>Check</button
       >
     </div>
   </div>
 </main>
-
-<style>
-  .row {
-    display: flex;
-    justify-content: center;
-  }
-  .column {
-    flex: 0;
-  }
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-    .column {
-      width: 100%;
-    }
-  }
-</style>
