@@ -3,7 +3,7 @@
 Run 
 ```
 yarn install
-yarn run dev
+yarn start
 ````
 #### For adding new Puzzle 
 - Head over to src/routes/. 
