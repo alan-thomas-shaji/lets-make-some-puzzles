@@ -1,7 +1,9 @@
 <script>
-    let identifyHashed = "10280d2a462632de4ed1327d190d955b0ec6726b14635d4bb6eddb8de0821343";
-    
-    async function sudokuEncrypt(input){
+    export let images;
+    export let clues;
+    export let identifyHashedAnswer;
+
+    async function identifyEncrypt(input){
 		const msgBuffer = new TextEncoder().encode(input);
 		const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
 		const hashArray=Array.from(new Uint8Array(hashBuffer));
@@ -11,24 +13,29 @@
 
     function identifyCheckAns(){
         let val = document.getElementById("identifyInput").value;
-        val = val.replace(" ", '').toLocaleLowerCase();
-        sudokuEncrypt(val).then(
+        val = val.replaceAll(" ", '').toLocaleLowerCase();
+        identifyEncrypt(val).then(
             hash => {
-                if(hash == identifyHashed) 
+                if(hash == identifyHashedAnswer) 
                     alert("Correct");
                 else
                     alert("Wrong");
             }
         );
     }
+
+    function identifyOnError(image){
+        image.onerror = "";
+        image.src = "image.alt";
+    }
 </script>
 
 <div class="text-center">
     <h1 class="text-3xl p-4">Identify The Personality</h1>
     <div id="clues" class="p-4">
-        <img src="IdentifyX/_.jpg" alt="DeHavillandPussMoth" class="inline" style="height: 400px"/>
-        <img src="IdentifyX/__.jpg" alt="FrenchLegionOfHonour" class="inline" style="height: 400px"/><br/>
-        <img src="IdentifyX/___.png" alt="TagLines" class="inline" style="height: 300px"/>
+        <img src="{images[0]}" alt="{clues[0]}" class="inline" style="height: 400px;width: 666px" on:error={identifyOnError(this)}/>
+        <img src="{images[1]}" alt="{clues[1]}" class="inline" style="height: 400px; width: 184px" on:error={identifyOnError(this)}/><br/>
+        <img src="{images[2]}" alt="{clues[2]}" class="inline" style="height: 300px;width: 854px" on:error={identifyOnError(this)}/>
     </div>
     <div>
         <input name="ans" placeholder="Answer" class="p-2" id="identifyInput"/>
