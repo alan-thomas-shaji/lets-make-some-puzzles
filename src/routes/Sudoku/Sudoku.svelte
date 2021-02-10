@@ -9,9 +9,9 @@
     ];
     import SudokuCell from "./SudokuCell.svelte";
     
-	var ansHashed = "8d2cbaf16d573434b9776abf73a1ae5ab0b7295a2449f3c469d76ccc66162173";
+	var sudokuAnsHashed = "8d2cbaf16d573434b9776abf73a1ae5ab0b7295a2449f3c469d76ccc66162173";
 
-	async function encrypt(input){
+	async function sudokuEncrypt(input){
 		const msgBuffer = new TextEncoder().encode(input);
 		const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
 		const hashArray=Array.from(new Uint8Array(hashBuffer));
@@ -19,8 +19,8 @@
 		return hashHex;
 	}
 
-	async function checkAns(){
-		if((await encrypt(document.getElementsByName("ans")[0].value)) == ansHashed)
+	async function sudokuCheckAns(){
+		if((await sudokuEncrypt(document.getElementsByName("ans")[0].value)) == sudokuAnsHashed)
 			alert("Congrats");
 		else
 			alert("Try Again");
@@ -49,7 +49,7 @@
 	</table>
 	<div id="ans" class="m-2 p-2 flex items-center justify-center">
 		<input class="mt-0 mb-0 mr-4 p-2" type="text" placeholder="Enter Answer" name="ans">
-		<button class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline" on:click={() => checkAns()}>Go</button>
+		<button class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline" on:click={() => sudokuCheckAns()}>Go</button>
 	</div>
 </div>
 
