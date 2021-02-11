@@ -1,22 +1,92 @@
 <script>
-	import Bomb from "./Bomb.svelte";
-	import Game from "./Game.svelte";
 	export let name;
 	let level = 10;
+	let count = 100;
+	let colour;
 	
   function pop()
   {
-	  alert("Your time is over");
+	  alert("Your time is over. The bomb went off! Woops");
   }
+
+  function handleClick()
+  {
+    document.getElementById("gamebar").style.display = "block";
+    const interval = setInterval(() => (count > 0) ? count-- : count, 1000);
+    return () => {
+      clearInterval(interval);
+    }; 
+  }
+
+  function getcolour()
+    {
+        colour = button.id;
+    }
+
+    let open = false;
+    function closeOnClickOutside(node) {
+      const handleClick = (event) => {
+        if(!node.contains(event.target)) {
+          open = false;
+          // If you want to prevent the outside click from doing anything else.
+          event.stopImmediatePropagation();
+        }
+      };
+
+      document.addEventListener('click', handleClick, { capture: true });
+      return {
+        destroy() {
+          document.removeEventListener(
+              'click',
+              handleClick,
+              { capture: true }
+            );
+        }
+      }
+    }
+
+    function popup()
+  {
+	  alert("Yaaayyy!!!!You Won");
+  }
+
 </script>
 
 <main>
 	<h1>Hello {name}! Welcome to level <strong class="text-black">{level}</strong></h1>
 	<h2 class="text-purple-900 bg-blue-100 p-4">Let's test your skill to the next level! Let's see if you can diffuse this bomb before it explodes.</h2>
 	<br>
-	<Bomb />
+	<center>
+        <img src="images/main-bomb.jpg" width=400 alt="front-bomb">
+        <br>
+	<button class="start" on:click="{handleClick}">Start diffusing!</button>
+	<div class="App">
+		You have {count} seconds left
+	</div>
 	<br>
-	<Game />
+	{#if count === 0}
+		{pop()};
+	{/if}
+
+	<div id="gamebar">
+		<div class="game bg-red-100">
+		<h1 class="game">Here's the bomb, diffuse it before the timer goes off! Cutting one wire from this bomb can result in it defusing... Hold up, cutting the wrong wire would result in the timer going off! Let's see if you're lucky enough, OR, if you're skilled enough to go down deep into seeing how the bomb works!</h1>
+		<center><img class="main-bomb" src="images/gameplay.jpg" alt="bg" width="500"></center>
+		<h1>Which wire would you cut?</h1>
+		<button class="bt-1" id="green" on:click="{getcolour}">Green</button>
+		<button class="bt-2" id="blue" on:click="{getcolour}">Blue</button>
+		<button class="bt-3" id="red" on:click="{() => (open = !open)}">Red</button>
+		<button class="bt-4" id="orange" on:click="{getcolour}">Orange</button>
+		<button class="bt-5" id="yellow" on:click="{getcolour}">Yellow</button>
+		</div>
+	
+	</div>
+	{#if open}
+	{popup()};
+	  <div class="popup" style="position:absolute" use:closeOnClickOutside>
+		<h1>YAAAY!! YOU WON!</h1>
+	  </div>
+	{/if}
 </main>
 
 <style>
@@ -43,5 +113,88 @@
 			max-width: none;
 		}
 	}
+
+	button.start{
+        text-align: center;
+        font-size: 2em;
+        background-color: greenyellow;
+        margin: 10px;
+        padding: 10px;
+        color: rgb(41, 41, 41);
+        border-radius: 15px;
+    }
+    button.start:hover{
+        background-color: rgb(59, 243, 13);
+    }
+
+	.App{
+		font-size: 2em;
+	}
+	
+	.game {
+    width: auto;
+    height: auto;
+}
+
+h1.game{
+    font-size: 2em;
+    font-weight: 100;
+	color: black;
+	text-transform: none;
+}
+
+.bt-1 {
+    text-align: center;
+        font-size: 2em;
+        background-color: green;
+        margin: 10px;
+        padding: 10px;
+        color: rgb(41, 41, 41);
+        border-radius: 15px;
+}
+
+.bt-2 {
+    text-align: center;
+        font-size: 2em;
+        background-color: blue;
+        margin: 10px;
+        padding: 10px;
+        color: rgb(41, 41, 41);
+        border-radius: 15px;
+}
+
+.bt-3 {
+    text-align: center;
+        font-size: 2em;
+        background-color: red;
+        margin: 10px;
+        padding: 10px;
+        color: rgb(41, 41, 41);
+        border-radius: 15px;
+}
+
+.bt-4 {
+    text-align: center;
+        font-size: 2em;
+        background-color: orange;
+        margin: 10px;
+        padding: 10px;
+        color: rgb(41, 41, 41);
+        border-radius: 15px;
+}
+
+.bt-5 {
+    text-align: center;
+        font-size: 2em;
+        background-color: yellow;
+        margin: 10px;
+        padding: 10px;
+        color: rgb(41, 41, 41);
+        border-radius: 15px;
+}
+
+#gamebar{
+	display: none;
+}
 
 </style>
