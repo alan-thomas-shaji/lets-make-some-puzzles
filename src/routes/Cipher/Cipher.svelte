@@ -34,15 +34,18 @@
   
   <style>
   
-      h1 {
+      /* h1 {
           
-          text-align: center;
-          text-transform: uppercase;
-          font-size: 75px;
-          letter-spacing: -5px;
-      color: aquamarine;
+           text-align: center;
+          text-transform: uppercase; 
+          font-size: 75px; 
+          letter-spacing: -5px; 
+          color: aquamarine; 
           animation: text 5s 1;
-      }	
+      }	 */
+      #cipherxyz {
+        animation: text 5s 1;
+      }
      @keyframes text {
        0%{
          color : #193806;;
@@ -62,6 +65,7 @@
       color: rgb(15, 233, 160);
         text-align: center;
       font-family: "Roboto Mono";
+      
       }
     p {
       font-family: "mono";
@@ -69,23 +73,9 @@
       
     }
        
-      button {
-      border-radius: 10;
-      /* background-color: rgba(187, 29, 29, 0.904); */
-      border: 2px solid #fffafa;
-      vertical-align: middle;
-      margin: 0;
-      font-weight: normal;
-      font-size: 1.2em;
-      color: #fff;
-      padding: 0.3em 0.5em;
-      transition: all 0.3s ease;
-        cursor: pointer;
-        object-position: center;
-      background-color: transparent;
-    }
-    /*
-     :global(body) {
+    
+    
+     /* :global(body) {
           position:relative;
           font-size:1.5rem;
           font-family:"Roboto Mono", sans-serif;
@@ -97,11 +87,9 @@
           min-height:100%;
           background: linear-gradient(-45deg, #050705, #0c2c0c)
           
-      } 
-    */
-      input {
-        background-color: transparent;
-      }
+      }  */
+   
+      
       
       .loader {
         position: absolute;
@@ -194,23 +182,27 @@
       
       
   </style>
-  <h1>CIPHER</h1>
+  <p id="cipherxyz" class="text-center uppercase text-6xl font-mono text-green-100">cipher</p>
   <main>
   <Box>
-    <h2>Break the Code</h2> 
+    <h2 class="text-3xl">Break the Code</h2> 
+    <br>
     
       <p>"He was HOPEFUL.
   
           EDABHDTEB  ITYEINHRC  HGNTOSOGE  AIETGGNIE   OOGHFAOES  POMETNDVA  SHBSNOIDD"
   
       </p>
+      <br>
       <p>
           Who is he?
       </p>
+      <br>
       
       <div id="answer">
-      <input type="text" placeholder="Enter the answer..." name="answer" />
-      <button on:click={() => submit()}>Submit</button>
+      <input class="bg-transparent rounded border-2 m-0 font-normal text-lg p-1.5" type="text" placeholder="Enter the answer..." name="answer" />
+      <button class="rounded border-2 align-middle m-0 font-normal text-lg p-1.5 cursor-pointer object-center transition duration-500 ease-in-out bg-transparent hover:bg-blue-600 transform hover:-translate-y-1 hover:scale-110" on:click={() => submit()}>Submit</button>
+       
     </div>
       
   </Box>
