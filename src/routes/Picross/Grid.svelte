@@ -3,16 +3,20 @@
 
   export let index_i;
   export let index_j;
+  export let val;
 
-  let className = "black";
+  const tailwindClass = " border-0 p-2 m-0 h-8 w-8";
+
+  let className = "bl67726579 asdfghjkl" + tailwindClass;
+  console.log(className);
 
   function getStyle() {
     let style = "";
-    if ((index_i + 1) % 5 == 0 && index_i != 19)
-      style += "border-bottom: 3px solid rgba(255, 0, 0, 0.5);";
+    if ((index_i - 2) % 5 == 0 && index_i != 19)
+      style += "border-bottom: 1px solid rgba(0, 0, 0, 1);";
 
-    if ((index_j + 1) % 5 == 0 && index_j != 19)
-      style += "border-right: 3px solid rgba(255, 0, 0, 0.5);";
+    if ((index_j - 2) % 5 == 0 && index_j != 19)
+      style += "border-right: 1px solid rgba(0, 0, 0, 1);";
 
     return style;
   }
@@ -27,11 +31,11 @@
 
   function reset() {
     resetGrid();
-    updateClass("black", "white");
-    updateClass("black", "red");
-    updateClass("black", "blue");
-    updateClass("black", "green");
-    updateClass("black", "yellow");
+    updateClass("bl67726579", "w7768697465");
+    updateClass("bl67726579", "r726564");
+    updateClass("bl67726579", "b626c7565");
+    updateClass("bl67726579", "g656e0d0a");
+    updateClass("bl67726579", "y79656c6c6f7");
 
     console.log("reset");
   }
@@ -42,90 +46,88 @@
 
     switch (userGrid[i][j]) {
       case "_0x2323bb2323bb":
-        let ele = document.getElementsByClassName("white");
+        let ele = document.getElementsByClassName("w7768697465");
         if (ele.length == 5) reset();
         else {
-          element.classList.add("white");
-          element.classList.remove("black");
+          element.classList.add("w7768697465");
+          element.classList.remove("bl67726579");
         }
         break;
       case "_0x2333bb2353bb":
-        element.classList.add("green");
-        element.classList.remove("black");
+        element.classList.add("g656e0d0a");
+        element.classList.remove("bl67726579");
         break;
       case "_0x3323bb2323bb":
-        element.classList.add("blue");
-        element.classList.remove("black");
+        element.classList.add("b626c7565");
+        element.classList.remove("bl67726579");
         break;
       case "_0x2333bb2323bb":
-        element.classList.add("red");
-        element.classList.remove("black");
+        element.classList.add("r726564");
+        element.classList.remove("bl67726579");
         break;
       case "_0x2343bb2323bb":
-        element.classList.add("yellow");
-        element.classList.remove("black");
+        element.classList.add("y79656c6c6f7");
+        element.classList.remove("bl67726579");
         break;
     }
     let equals = JSON.stringify(userGrid) === JSON.stringify(solutionGrid);
+    console.log(equals);
 
     if (equals) {
-      updateClass("white", "black");
+      updateClass("w7768697465", "bl67726579");
     }
   }
 </script>
 
-<td>
-  <div style={getStyle()}>
-    <button
-      class={className}
-      id={index_i + "," + index_j}
-      on:click={() => updateUserGrid(index_i, index_j)}
-    />
-  </div>
-</td>
+{#if val == "0" || val == "1" || val == "2" || val == "3" || val == "6" || val == "8"}
+  <td class="m-0">
+    <div>
+      <button class="w-8 h-8 p-2 border-0 cursor-default" disabled
+        >{val == 0 ? "" : val}</button
+      >
+    </div>
+  </td>
+{:else}
+  <td class="m-0 border-2 border-black">
+    <div class="p-0" style={getStyle()}>
+      <button
+        class={className}
+        id={index_i + "," + index_j}
+        on:click={() => updateUserGrid(index_i, index_j)}
+      />
+    </div>
+  </td>
+{/if}
 
 <style>
-  td button:disabled:hover {
-    background-color: rgba(255, 0, 0, 0.5);
+  .asdfghjkl:disabled {
+    background-color: grey;
+    color: black;
   }
-
-  td button:focus {
+  .asdfghjkl:focus {
     border: none;
+    outline: none;
   }
-
-  td button:hover {
-    cursor: pointer;
-    background-color: rgba(255, 0, 0, 0.5);
+  .asdfghjkl:hover {
+    background-color: grey;
   }
-
-  td {
-    border: 1px solid blue;
+  .bl67726579 {
+    background-color: rgba(128, 128, 128, 0.5);
   }
-
-  button {
-    margin: 0;
-    border: none;
-    width: 30px;
-    height: 30px;
-  }
-
-  .black {
-    background-color: black;
-  }
-  .red {
+  .r726564 {
     background-color: #e0475a;
   }
-  .blue {
+  .b626c7565 {
     background-color: #51c5f1;
   }
-  .green {
+  .g656e0d0a {
     background-color: #5bb77f;
   }
-  .yellow {
+  .y79656c6c6f7 {
     background-color: #ebb235;
   }
 
-  .white {
+  .w7768697465 {
     background-color: #ffffff;
   }
 </style>
