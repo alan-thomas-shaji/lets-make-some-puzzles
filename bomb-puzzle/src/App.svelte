@@ -7,6 +7,7 @@
   function pop()
   {
 	  alert("Your time is over. The bomb went off! Woops");
+	  document.getElementById("gamebar").style.display = "none";
   }
 
   function handleClick()
@@ -73,12 +74,17 @@
 		<h1 class="game">Here's the bomb, diffuse it before the timer goes off! Cutting one wire from this bomb can result in it defusing... Hold up, cutting the wrong wire would result in the timer going off! Let's see if you're lucky enough, OR, if you're skilled enough to go down deep into seeing how the bomb works!</h1>
 		<center><img class="main-bomb" src="images/gameplay.jpg" alt="bg" width="500"></center>
 		<h1>Which wire would you cut?</h1>
-		<button class="bt-1" id="green" on:click="{getcolour}">Green</button>
-		<button class="bt-2" id="blue" on:click="{getcolour}">Blue</button>
-		<button class="bt-3" id="red" on:click="{() => (open = !open)}">Red</button>
-		<button class="bt-4" id="orange" on:click="{getcolour}">Orange</button>
-		<button class="bt-5" id="yellow" on:click="{getcolour}">Yellow</button>
-		</div>
+		<button class="bt-1" id="green1" on:click="{handleClick}">Green1</button>
+		<button class="bt-5" id="yellow1" on:click="{handleClick}">Yellow1</button>
+		<button class="bt-2" id="blue1" on:click="{handleClick}">Blue1</button>
+		<button class="bt-4" id="orange1" on:click="{handleClick}">Orange1</button>
+		<button class="bt-3" id="red1" on:click="{() => (open = !open)}">Red1</button>
+		<button class="bt-1" id="green2" on:click="{handleClick}">Green2</button>
+		<button class="bt-5" id="yellow2" on:click="{handleClick}">Yellow2</button>
+		<button class="bt-2" id="blue2" on:click="{handleClick}">Blue2</button>
+		<button class="bt-3" id="red2" on:click="{handleClick}">Red2</button>
+		<button class="bt-4" id="orange2" on:click="{handleClick}">Orange2</button>
+	</div>
 	
 	</div>
 	{#if open}
@@ -88,6 +94,7 @@
 	  </div>
 	{/if}
 </main>
+
 
 <style>
 	main {
