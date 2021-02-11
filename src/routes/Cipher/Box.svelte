@@ -2,7 +2,7 @@
 <style>
 	.box {
         width: 500px;
-        height: 205px;
+        height: 215px;
 		border: 1px solid rgb(255, 245, 245);
 		border-radius: 2px;
 		box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
