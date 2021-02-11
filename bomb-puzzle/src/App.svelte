@@ -1,14 +1,32 @@
 <script>
+	import {onMount} from 'svelte';
 	export let name;
 	let level = 10;
 	let count = 100;
 	let colour;
+
+	onMount(async() => {
+		if(localStorage.getItem('counter') === null)
+		{
+			localStorage.setItem('counter', count);
+		}
+		else
+		{
+			count = localStorage.getItem('counter');
+		}
+		return() => {
+			localStorage.setItem('counter', count);
+		}
+	})
 	
   function pop()
   {
 	  alert("Your time is over. The bomb went off! Woops");
 	  document.getElementById("gamebar").style.display = "none";
+	  this.style.visibility = "hidden";
   }
+
+
 
   function handleClick()
   {
@@ -19,10 +37,14 @@
     }; 
   }
 
+
+
   function getcolour()
     {
         colour = button.id;
     }
+
+
 
     let open = false;
     function closeOnClickOutside(node) {
@@ -46,21 +68,28 @@
       }
     }
 
+
+
+
     function popup()
   {
 	  alert("Yaaayyy!!!!You Won");
   }
 
+
+
 </script>
 
 <main>
+
+
 	<h1>Hello {name}! Welcome to level <strong class="text-black">{level}</strong></h1>
 	<h2 class="text-purple-900 bg-blue-100 p-4">Let's test your skill to the next level! Let's see if you can diffuse this bomb before it explodes.</h2>
 	<br>
 	<center>
         <img src="images/main-bomb.jpg" width=400 alt="front-bomb">
         <br>
-	<button class="start" on:click="{handleClick}">Start diffusing!</button>
+	<button class="start" id="start-button" on:click="{handleClick}">Start diffusing!</button>
 	<div class="App">
 		You have {count} seconds left
 	</div>
@@ -71,7 +100,7 @@
 
 	<div id="gamebar">
 		<div class="game bg-red-100">
-		<h1 class="game">Here's the bomb, diffuse it before the timer goes off! Cutting one wire from this bomb can result in it defusing... Hold up, cutting the wrong wire would result in the timer going off! Let's see if you're lucky enough, OR, if you're skilled enough to go down deep into seeing how the bomb works!</h1>
+		<h1 class="game">Here's the bomb, diffuse it before the timer goes off! Cutting one wire from this bomb can result in it defusing... Hold up, cutting the wrong wire would result in the timer going off faster! Let's see if you're lucky enough, OR, if you're skilled enough to go down deep into seeing how the bomb works!</h1>
 		<center><img class="main-bomb" src="images/gameplay.jpg" alt="bg" width="500"></center>
 		<h1>Which wire would you cut?</h1>
 		<button class="bt-1" id="green1" on:click="{handleClick}">Green1</button>
@@ -87,12 +116,21 @@
 	</div>
 	
 	</div>
+
+
 	{#if open}
+
 	{popup()};
+
 	  <div class="popup" style="position:absolute" use:closeOnClickOutside>
+
 		<h1>YAAAY!! YOU WON!</h1>
+
 	  </div>
+
 	{/if}
+
+
 </main>
 
 
@@ -129,6 +167,7 @@
         padding: 10px;
         color: rgb(41, 41, 41);
         border-radius: 15px;
+		display: block;
     }
     button.start:hover{
         background-color: rgb(59, 243, 13);
