@@ -14,7 +14,7 @@
 
 <div class="bomb">
     <center>
-        <img src="https://play-lh.googleusercontent.com/hOJIe8VrvSTdJ02L2GoFSeopQh_BIfKS4bb3HjqPq_8aAjAPZkfyCY6Mk7MaCJuv8Vs" width=400 alt="">
+        <img src="images/main-bomb.jpg" width=400 alt="front-bomb">
         <br>
         <button class="start" on:click="{handleClick}">Start diffusing!</button>
         <div class="App">
