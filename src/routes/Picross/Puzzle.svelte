@@ -1,41 +1,27 @@
 <script>
+  export let nextPuzzle;
+  import { onMount } from "svelte";
   import Grid from "./Grid.svelte";
-
+  import {navigate} from "svelte-routing";
   import { solutionGrid } from "./utils";
-
+  import { getNextUrl, verifyHash, verifyPreviousAns } from "../../common";
+  import { picrossHashed } from "../../constants";
+  
   let grid = solutionGrid;
 
-  async function encrypt(input) {
-    const msgBuffer = new TextEncoder().encode(input);
-    const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray
-      .map((b) => ("00" + b.toString(16)).slice(-2))
-      .join("");
-    return hashHex;
-  }
 
   async function submit() {
-    let userAnswer = await encrypt(
-      document.getElementsByName("answer")[0].value
-    );
-    let f = true;
-    let hashedAnswer = [
-      "b27fb38ba323745c91fe7fd9021605430d43bdb7d3be765266e29364d103e26f",
-      "877c3aec832cd41012590679bdb84ebe25e5ebbd71b6b81722b48b129feb76ae",
-      "2cfe0127b72cebdb976f754268702f3e04b9acb39d1cff2c76e0e171f34801b0",
-    ];
-    hashedAnswer.forEach(function (ans) {
-      if (userAnswer == ans && f == true) {
-        f = false;
-        alert("Congrats");
-      }
-    });
-
-    if (f) alert("Try Again");
+    let val = document.getElementsByName("answer")[0].value.toLocaleLowerCase();
+    
+    if (await verifyHash(val, picrossHashed))
+        navigate(getNextUrl(nextPuzzle, val));
+    else 
+        alert("Try Again");
 
     console.log("submit");
   }
+
+  onMount(() => verifyPreviousAns(window.location, lastAns));
 </script>
 
 <main>

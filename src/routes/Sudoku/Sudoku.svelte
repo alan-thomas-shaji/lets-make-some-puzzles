@@ -1,4 +1,10 @@
 <script>
+	import SudokuCell from "./SudokuCell.svelte";
+	import {navigate} from "svelte-routing";
+	import { getNextUrl, verifyHash } from "../../common";
+	import { sudokuHashed } from "../../constants";
+
+	export let nextPuzzle;
 	var sudoku = [
         [5, null, 6, null, null, null],
         [null, null, null, null, 2, null],
@@ -7,21 +13,11 @@
         [null, null, 4, null, null, null],
         [null, null, null, 1, null, 3]
     ];
-    import SudokuCell from "./SudokuCell.svelte";
     
-	var sudokuAnsHashed = "8d2cbaf16d573434b9776abf73a1ae5ab0b7295a2449f3c469d76ccc66162173";
-
-	async function sudokuEncrypt(input){
-		const msgBuffer = new TextEncoder().encode(input);
-		const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-		const hashArray=Array.from(new Uint8Array(hashBuffer));
-		const hashHex=hashArray.map(b=>('00'+b.toString(16)).slice(-2)).join('');
-		return hashHex;
-	}
-
 	async function sudokuCheckAns(){
-		if((await sudokuEncrypt(document.getElementsByName("ans")[0].value)) == sudokuAnsHashed)
-			alert("Congrats");
+		let val = document.getElementsByName("ans")[0].value;
+		if(await verifyHash(val, sudokuHashed))
+			navigate(getNextUrl(nextPuzzle, val))
 		else
 			alert("Try Again");
 	}
@@ -30,7 +26,7 @@
 
 
 <div id="sudoku-wrap" class="p-4 text-lg text-center">
-	<h1 class="text-3xl">Puzzle</h1>
+	<h1 class="text-3xl">Sudoku</h1>
 	<div id="content" class="m-2 p-2">
 		<p>Find the first row of the sudoku</p>	
 	</div>
