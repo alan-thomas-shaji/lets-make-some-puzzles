@@ -1,29 +1,22 @@
 <script>
     export let nextPuzzle;
+    export let lastAns;
+    import { onMount } from "svelte";
     import Box from './Box.svelte';
     import {navigate} from "svelte-routing";
+    import { getNextUrl, verifyHash, verifyPreviousAns } from '../../common';
+    import { cipherHashed } from "../../constants";
 
-    async function encrypt(input) {
-      const msgBuffer = new TextEncoder().encode(input);
-      const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      const hashHex = hashArray
-        .map((b) => ("00" + b.toString(16)).slice(-2))
-        .join("");
-      return hashHex;
-    }
     async function submit() {
         let val = document.getElementsByName("answer")[0].value.replace(" ", "").toLocaleLowerCase();
-        let userAnswer = await encrypt(val);
 
-        let hashedAnswer = "1fb61bae29f70edd6b6aecd631f671ef597a176800830f6cd7321e0df7ee9eee";
-        if (userAnswer == hashedAnswer)
-            navigate(nextPuzzle);
+        if (await verifyHash(val, cipherHashed))
+            navigate(getNextUrl(nextPuzzle, val));
         else 
             alert("Try Again");
     }
     
-  
+    onMount(() => verifyPreviousAns(window.location, lastAns));
   </script>
   
   <style>

@@ -4,34 +4,27 @@
     export let identifyHashedAnswer;
     export let description;
     export let nextPuzzle;
-
+    export let lastAns;
+    
+    import { onMount } from "svelte";
     import {navigate} from "svelte-routing";
+    import { getNextUrl, verifyHash, verifyPreviousAns } from "../../common";
 
-    async function identifyEncrypt(input){
-		const msgBuffer = new TextEncoder().encode(input);
-		const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-		const hashArray=Array.from(new Uint8Array(hashBuffer));
-		const hashHex=hashArray.map(b=>('00'+b.toString(16)).slice(-2)).join('');
-		return hashHex;
-	}
-
-    function identifyCheckAns(){
+    async function identifyCheckAns(){
         let val = document.getElementById("identifyInput").value;
         val = val.replaceAll(" ", '').toLocaleLowerCase();
-        identifyEncrypt(val).then(
-            hash => {
-                if(hash == identifyHashedAnswer) 
-                    navigate(nextPuzzle);
-                else
-                    alert("Wrong");
-            }
-        );
+        if(await verifyHash(val, identifyHashedAnswer))
+            navigate(getNextUrl(nextPuzzle, val));
+        else
+            alert("Try Again");
     }
 
     function identifyOnError(image){
         image.onerror = "";
         image.src = "image.alt";
     }
+    
+    onMount(() => verifyPreviousAns(window.location, lastAns));
 </script>
 
 <div class="text-center">

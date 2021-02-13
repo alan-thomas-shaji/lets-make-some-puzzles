@@ -1,33 +1,27 @@
 <script>
   export let nextPuzzle;
+  import { onMount } from "svelte";
   import Grid from "./Grid.svelte";
   import {navigate} from "svelte-routing";
   import { solutionGrid } from "./utils";
+  import { getNextUrl, verifyHash, verifyPreviousAns } from "../../common";
+  import { picrossHashed } from "../../constants";
   
   let grid = solutionGrid;
 
-  async function encrypt(input) {
-    const msgBuffer = new TextEncoder().encode(input);
-    const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray
-      .map((b) => ("00" + b.toString(16)).slice(-2))
-      .join("");
-    return hashHex;
-  }
 
   async function submit() {
     let val = document.getElementsByName("answer")[0].value.toLocaleLowerCase();
-    let userAnswer = await encrypt(val);
-
-    let hashedAnswer = "877c3aec832cd41012590679bdb84ebe25e5ebbd71b6b81722b48b129feb76ae";
-    if (userAnswer == hashedAnswer)
-        navigate(nextPuzzle);
+    
+    if (await verifyHash(val, picrossHashed))
+        navigate(getNextUrl(nextPuzzle, val));
     else 
         alert("Try Again");
 
     console.log("submit");
   }
+
+  onMount(() => verifyPreviousAns(window.location, lastAns));
 </script>
 
 <main>
