@@ -26,7 +26,7 @@
 
 
 <div id="sudoku-wrap" class="p-4 text-lg text-center">
-	<h1 class="text-3xl">Puzzle</h1>
+	<h1 class="text-3xl">Sudoku</h1>
 	<div id="content" class="m-2 p-2">
 		<p>Find the first row of the sudoku</p>	
 	</div>
