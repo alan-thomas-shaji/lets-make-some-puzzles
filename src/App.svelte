@@ -43,6 +43,7 @@
       identifyHashedAnswer="912b92939e8104d9be991887e236602a6e37925111684bd5aba981f1376ce6d1"
       images={["IdentifyY/_.jpg", "IdentifyY/__.jpg", "IdentifyY/___.jpg"]}
       clues={["IdentifyY/extraClue", "IdentifyY/additionalClue", "IdentifyY/moreClues"]}
+      description={"(Provide full name starting with A)"}
     />
   </div>
 </Router>

@@ -2,6 +2,7 @@
     export let images;
     export let clues;
     export let identifyHashedAnswer;
+    export let description;
 
     async function identifyEncrypt(input){
 		const msgBuffer = new TextEncoder().encode(input);
@@ -32,6 +33,7 @@
 
 <div class="text-center">
     <h1 class="text-3xl p-4">Identify The Personality</h1>
+    <span class="p-2 text-lg">{description ?? ""}</span>
     <div id="clues" class="p-4">
         <img src="{images[0]}" alt="{clues[0]}" class="inline" style="height: 400px;width: 666px" on:error={identifyOnError(this)}/>
         <img src="{images[1]}" alt="{clues[1]}" class="inline" style="height: 400px; width: 184px" on:error={identifyOnError(this)}/><br/>
