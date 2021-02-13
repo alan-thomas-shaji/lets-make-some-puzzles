@@ -1,4 +1,5 @@
 <script>
+	export let nextPuzzle;
 	var sudoku = [
         [5, null, 6, null, null, null],
         [null, null, null, null, 2, null],
@@ -8,6 +9,7 @@
         [null, null, null, 1, null, 3]
     ];
     import SudokuCell from "./SudokuCell.svelte";
+	import {navigate} from "svelte-routing";
     
 	var sudokuAnsHashed = "8d2cbaf16d573434b9776abf73a1ae5ab0b7295a2449f3c469d76ccc66162173";
 
@@ -21,7 +23,7 @@
 
 	async function sudokuCheckAns(){
 		if((await sudokuEncrypt(document.getElementsByName("ans")[0].value)) == sudokuAnsHashed)
-			alert("Congrats");
+			navigate(nextPuzzle);
 		else
 			alert("Try Again");
 	}

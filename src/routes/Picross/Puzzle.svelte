@@ -1,8 +1,9 @@
 <script>
+  export let nextPuzzle;
   import Grid from "./Grid.svelte";
-
+  import {navigate} from "svelte-routing";
   import { solutionGrid } from "./utils";
-
+  
   let grid = solutionGrid;
 
   async function encrypt(input) {
@@ -16,23 +17,14 @@
   }
 
   async function submit() {
-    let userAnswer = await encrypt(
-      document.getElementsByName("answer")[0].value
-    );
-    let f = true;
-    let hashedAnswer = [
-      "b27fb38ba323745c91fe7fd9021605430d43bdb7d3be765266e29364d103e26f",
-      "877c3aec832cd41012590679bdb84ebe25e5ebbd71b6b81722b48b129feb76ae",
-      "2cfe0127b72cebdb976f754268702f3e04b9acb39d1cff2c76e0e171f34801b0",
-    ];
-    hashedAnswer.forEach(function (ans) {
-      if (userAnswer == ans && f == true) {
-        f = false;
-        alert("Congrats");
-      }
-    });
+    let val = document.getElementsByName("answer")[0].value.toLocaleLowerCase();
+    let userAnswer = await encrypt(val);
 
-    if (f) alert("Try Again");
+    let hashedAnswer = "877c3aec832cd41012590679bdb84ebe25e5ebbd71b6b81722b48b129feb76ae";
+    if (userAnswer == hashedAnswer)
+        navigate(nextPuzzle);
+    else 
+        alert("Try Again");
 
     console.log("submit");
   }

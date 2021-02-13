@@ -1,6 +1,9 @@
 <script>
+    export let nextPuzzle;
     import Box from './Box.svelte';
-        async function encrypt(input) {
+    import {navigate} from "svelte-routing";
+
+    async function encrypt(input) {
       const msgBuffer = new TextEncoder().encode(input);
       const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
       const hashArray = Array.from(new Uint8Array(hashBuffer));
@@ -10,23 +13,14 @@
       return hashHex;
     }
     async function submit() {
-      let userAnswer = await encrypt(
-        document.getElementsByName("answer")[0].value
-      );
-      let f = true;
-      let hashedAnswer = [
-        "651b365d831f5fb13e03d33f41eb021c98f18ddfb10982fdf47f31cb7e6b9638",
-        "785afb7d32885e0a2dfd79ddb2e7fa303bd033958d28bfa060d81b8d962bb4ec",
-        "13dec5158d2ff742951586a5cde11ebbbed0e08539365dcc99b1c5872c7126e1",
-      ];
-      hashedAnswer.forEach(function (ans) {
-        if (userAnswer == ans && f == true) {
-          f = false;
-          alert("Congrats");
-        }
-      });
-      if (f) alert("Incorrect Answer. Try Again");
-      console.log("submit");
+        let val = document.getElementsByName("answer")[0].value.replace(" ", "").toLocaleLowerCase();
+        let userAnswer = await encrypt(val);
+
+        let hashedAnswer = "1fb61bae29f70edd6b6aecd631f671ef597a176800830f6cd7321e0df7ee9eee";
+        if (userAnswer == hashedAnswer)
+            navigate(nextPuzzle);
+        else 
+            alert("Try Again");
     }
     
   

@@ -3,6 +3,9 @@
     export let clues;
     export let identifyHashedAnswer;
     export let description;
+    export let nextPuzzle;
+
+    import {navigate} from "svelte-routing";
 
     async function identifyEncrypt(input){
 		const msgBuffer = new TextEncoder().encode(input);
@@ -18,7 +21,7 @@
         identifyEncrypt(val).then(
             hash => {
                 if(hash == identifyHashedAnswer) 
-                    alert("Correct");
+                    navigate(nextPuzzle);
                 else
                     alert("Wrong");
             }
