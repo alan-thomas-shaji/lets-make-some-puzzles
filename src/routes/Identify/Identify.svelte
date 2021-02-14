@@ -2,36 +2,35 @@
     export let images;
     export let clues;
     export let identifyHashedAnswer;
+    export let description;
+    export let nextPuzzle;
+    export let lastAns;
+    
+    import { onMount } from "svelte";
+    import {navigate} from "svelte-routing";
+    import { getNextUrl, verifyHash, verifyPreviousAns } from "../../common";
+import Button from "../../components/button.svelte";
 
-    async function identifyEncrypt(input){
-		const msgBuffer = new TextEncoder().encode(input);
-		const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-		const hashArray=Array.from(new Uint8Array(hashBuffer));
-		const hashHex=hashArray.map(b=>('00'+b.toString(16)).slice(-2)).join('');
-		return hashHex;
-	}
-
-    function identifyCheckAns(){
+    async function identifyCheckAns(){
         let val = document.getElementById("identifyInput").value;
         val = val.replaceAll(" ", '').toLocaleLowerCase();
-        identifyEncrypt(val).then(
-            hash => {
-                if(hash == identifyHashedAnswer) 
-                    alert("Correct");
-                else
-                    alert("Wrong");
-            }
-        );
+        if(await verifyHash(val, identifyHashedAnswer))
+            navigate(getNextUrl(nextPuzzle, val));
+        else
+            alert("Try Again");
     }
 
     function identifyOnError(image){
         image.onerror = "";
         image.src = "image.alt";
     }
+    
+    onMount(() => verifyPreviousAns(window.location, lastAns));
 </script>
 
-<div class="text-center">
-    <h1 class="text-3xl p-4">Identify The Personality</h1>
+<div class="text-center text-orange">
+    <h1 class="text-4xl p-4 font-bold">Identify The Personality</h1>
+    <span class="p-2 text-lg">{description ?? ""}</span>
     <div id="clues" class="p-4">
         <img src="{images[0]}" alt="{clues[0]}" class="inline" style="height: 400px;width: 666px" on:error={identifyOnError(this)}/>
         <img src="{images[1]}" alt="{clues[1]}" class="inline" style="height: 400px; width: 184px" on:error={identifyOnError(this)}/><br/>
@@ -39,6 +38,6 @@
     </div>
     <div>
         <input name="ans" placeholder="Answer" class="p-2" id="identifyInput"/>
-        <button class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline" on:click="{() => identifyCheckAns()}">Go</button>
+        <Button handlerFunction={identifyCheckAns} text="Go"/>
     </div>
 </div>
