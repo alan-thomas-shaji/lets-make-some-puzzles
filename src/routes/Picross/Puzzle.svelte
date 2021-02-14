@@ -1,11 +1,13 @@
 <script>
   export let nextPuzzle;
+  export let lastAns;
   import { onMount } from "svelte";
   import Grid from "./Grid.svelte";
   import {navigate} from "svelte-routing";
   import { solutionGrid } from "./utils";
   import { getNextUrl, verifyHash, verifyPreviousAns } from "../../common";
   import { picrossHashed } from "../../constants";
+import Button from "../../components/button.svelte";
   
   let grid = solutionGrid;
 
@@ -55,10 +57,7 @@
         placeholder="Whose logo is it?"
         name="answer"
       />
-      <button
-        class="px-5 py-2 m-2 border border-teal-800 text-white transition duration-500 ease select-none bg-teal-600 rounded-lg focus:shadow-outline hover:bg-teal-800 focus:outline-none focus:shadow-outline"
-        on:click={() => submit()}>Check</button
-      >
+      <Button handlerFunction={submit} text="Check"/>
     </div>
   </div>
 </main>
