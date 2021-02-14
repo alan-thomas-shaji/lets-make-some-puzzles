@@ -25,13 +25,13 @@
 </script>
 
 
-<div id="sudoku-wrap" class="p-4 text-lg text-center">
-	<h1 class="text-3xl">Sudoku</h1>
+<div id="sudoku-wrap" class="p-4 text-lg text-center text-orange">
+	<h1 class="text-5xl font-bold">Sudoku</h1>
 	<div id="content" class="m-2 p-2">
 		<p>Find the first row of the sudoku</p>	
 	</div>
 
-	<table cellpadding="0" cellspacing="0" align="center" class="border-collapse border-black border-2">
+	<table cellpadding="0" cellspacing="0" align="center" class="border-collapse border-4">
 		{#each {length: sudoku.length} as _, i}
 			<tr>
 				{#each {length: sudoku.length} as _,j}
@@ -45,7 +45,7 @@
 	</table>
 	<div id="ans" class="m-2 p-2 flex items-center justify-center">
 		<input class="mt-0 mb-0 mr-4 p-2" type="text" placeholder="Enter Answer" name="ans">
-		<button class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline" on:click={() => sudokuCheckAns()}>Go</button>
+		<button class="border border-orange bg-orange text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-700 focus:outline-none focus:shadow-outline" on:click={() => sudokuCheckAns()}>Go</button>
 	</div>
 </div>
 

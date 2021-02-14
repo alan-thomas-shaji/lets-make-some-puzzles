@@ -27,6 +27,11 @@
   /* purgecss end ignore */
   
   @tailwind utilities;
+
+  body{
+    background-color: #3e3939;
+
+  }
   </style>
 
 <Router url={url}>
