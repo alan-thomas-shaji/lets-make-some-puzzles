@@ -52,7 +52,7 @@
     />
     
     <Route path={identifyXUrl} component={Identify} 
-      identifyHashedAnswer="1a644df7bbbbf33492bf976bd1009d7440623b354c2ea46c73d8612156255e29"
+      identifyHashedAnswer={identifyXHashed}
       images={["IdentifyX/_.jpg", "IdentifyX/__.jpg", "IdentifyX/___.png"]}
       clues={["DeHavillandPussMoth", "FrenchLegionOfHonour", "Taglines"]}
       nextPuzzle={picrossUrl}
@@ -60,7 +60,7 @@
     />
     
     <Route path={identifyYUrl} component={Identify}
-      identifyHashedAnswer="912b92939e8104d9be991887e236602a6e37925111684bd5aba981f1376ce6d1"
+      identifyHashedAnswer={identifyYHashed}
       images={["IdentifyY/_.jpg", "IdentifyY/__.jpg", "IdentifyY/___.jpg"]}
       clues={["IdentifyY/extraClue", "IdentifyY/additionalClue", "IdentifyY/moreClues"]}
       description="(Provide full name starting with A)"

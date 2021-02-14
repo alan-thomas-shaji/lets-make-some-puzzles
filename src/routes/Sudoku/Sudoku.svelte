@@ -3,6 +3,7 @@
 	import {navigate} from "svelte-routing";
 	import { getNextUrl, verifyHash } from "../../common";
 	import { sudokuHashed } from "../../constants";
+import Button from "../../components/button.svelte";
 
 	export let nextPuzzle;
 	var sudoku = [
@@ -45,7 +46,7 @@
 	</table>
 	<div id="ans" class="m-2 p-2 flex items-center justify-center">
 		<input class="mt-0 mb-0 mr-4 p-2" type="text" placeholder="Enter Answer" name="ans">
-		<button class="border border-orange bg-orange text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-700 focus:outline-none focus:shadow-outline" on:click={() => sudokuCheckAns()}>Go</button>
+		<Button handlerFunction={sudokuCheckAns} text="Go"/>
 	</div>
 </div>
 
