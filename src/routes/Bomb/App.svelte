@@ -97,7 +97,7 @@
 		{pop()};
 	{/if}
 
-	<div id="gamebar">
+	<div id="gamebar" style="display:none;">
 		<div class="game bg-red-100">
 		<h1 class="game">Here's the bomb, diffuse it before the timer goes off! Cutting one wire from this bomb can result in it defusing... Hold up, cutting the wrong wire would result in the timer going off faster! Let's see if you're lucky enough, OR, if you're skilled enough to go down deep into seeing how the bomb works!</h1>
 		<center><img class="main-bomb" src="Bomb/gameplay.jpg" alt="bg" width="500"></center>
