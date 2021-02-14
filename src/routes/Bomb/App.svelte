@@ -30,6 +30,7 @@
   function handleClick()
   {
     document.getElementById("gamebar").style.display = "block";
+	document.getElementById("start-button").style.display = "none";
     const interval = setInterval(() => (count > 0) ? count-- : count, 1000);
     return () => {
       clearInterval(interval);
@@ -73,6 +74,8 @@
     function popup()
   {
 	  alert("Yaaayyy!!!!You Won");
+	  document.getElementById("gamebar").style.display = "none";
+	  this.style.visibility = "hidden";
   }
 
 
@@ -81,7 +84,7 @@
 
 <main class="text-3xl">
 
-
+	<div class="">
 	<h1>Hello Player! Welcome to level <strong class="text-black">{level}</strong></h1>
 	<h2 class="text-purple-900 bg-blue-100 p-4">Let's test your skill to the next level! Let's see if you can diffuse this bomb before it explodes.</h2>
 	<br>
@@ -116,7 +119,6 @@
 	
 	</div>
 
-
 	{#if open}
 
 	{popup()};
@@ -128,6 +130,8 @@
 	  </div>
 
 	{/if}
+
+</div>
 
 
 </main>
