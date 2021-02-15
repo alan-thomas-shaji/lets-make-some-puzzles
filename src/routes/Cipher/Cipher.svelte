@@ -173,9 +173,9 @@
       
   </style>
   <p id="cipherxyz" class="text-center uppercase text-6xl font-mono text-orange">cipher</p>
-  <main>
+  <main class="text-2xl">
   <Box>
-    <p class=" text-3xl text-orange">Break the Code</p> 
+    <p class=" text-5xl text-orange">Break the Code</p> 
     <br>
     
       <p class="text-light">"He was HOPEFUL.
