@@ -3,10 +3,9 @@
 	.box {
         width: 500px;
         height: 215px;
-		border: 1px solid rgb(255, 245, 245);
+		/*border: 1px solid #f6f4f4;*/
 		border-radius: 2px;
-		box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-		padding: 1em;
+		padding: 10px;
         margin: 0 0 1em 0;
         position: absolute;
         left: 50%;

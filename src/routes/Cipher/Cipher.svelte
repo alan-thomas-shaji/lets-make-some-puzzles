@@ -2,6 +2,7 @@
     export let nextPuzzle;
     export let lastAns;
     import { onMount } from "svelte";
+    import Button from "../../components/button.svelte";
     import Box from './Box.svelte';
     import {navigate} from "svelte-routing";
     import { getNextUrl, verifyHash, verifyPreviousAns } from '../../common';
@@ -35,7 +36,7 @@
       }
      @keyframes text {
        0%{
-         color : #193806;;
+         color : #f6f4f4;;
          margin-bottom: -40px;
        }
        30%{
@@ -76,7 +77,9 @@
           
       }  */
    
-      
+      input:focus{
+        outline:none;
+      }
       
       .loader {
         position: absolute;
@@ -150,8 +153,8 @@
         0%{
           width: 0;
           height: 0;
-          border: 4px solid #00e250;
-          box-shadow: 0 0 10px #00e250;
+          border: 4px solid #ff7417e0;
+          box-shadow: 0 0 10px #ff7417e0;
           opacity: 1;
         }
         70%{
@@ -160,8 +163,8 @@
         100%{
           width: 100%;
           height: 100%;
-          border: 4px solid #00e250;
-          box-shadow: 0 0 100px #00e250;
+          border: 4px solid #ff7417e0;
+          box-shadow: 0 0 100px #ff7417e0;
           opacity: 0;
         }
       }
@@ -169,26 +172,27 @@
       
       
   </style>
-  <p id="cipherxyz" class="text-center uppercase text-6xl font-mono text-green-100">cipher</p>
-  <main>
+  <p id="cipherxyz" class="text-center uppercase text-6xl font-mono text-orange">cipher</p>
+  <main class="text-2xl">
   <Box>
-    <h2 class="text-3xl">Break the Code</h2> 
+    <p class=" text-5xl text-orange">Break the Code</p> 
     <br>
     
-      <p>"He was HOPEFUL.
+      <p class="text-light">"He was HOPEFUL.
   
           EDABHDTEB  ITYEINHRC  HGNTOSOGE  AIETGGNIE   OOGHFAOES  POMETNDVA  SHBSNOIDD"
   
       </p>
       <br>
-      <p>
+      <p class="text-orange">
           Who is he?
       </p>
       <br>
       
       <div id="answer">
-      <input class="bg-transparent rounded border-2 m-0 font-normal text-lg p-1.5" type="text" placeholder="Enter the answer..." name="answer" />
-      <button class="rounded border-2 align-middle m-0 font-normal text-lg p-1.5 cursor-pointer object-center transition duration-500 ease-in-out bg-transparent hover:bg-blue-600 transform hover:-translate-y-1 hover:scale-110" on:click={() => submit()}>Submit</button>
+      <input class="bg-transparent text-orange rounded border-2 m-0 font-normal p-1.5 p-2" type="text" placeholder="Enter the answer..." name="answer" />
+      <Button handlerFunction={submit} text="Go"/>
+      <!-- <button class="rounded border-2 align-middle m-0 font-normal text-lg p-1.5 cursor-pointer object-center transition duration-500 ease-in-out bg-transparent hover:bg-blue-600 transform hover:-translate-y-1 hover:scale-110" on:click={() => submit()}>Submit</button> -->
        
     </div>
       
