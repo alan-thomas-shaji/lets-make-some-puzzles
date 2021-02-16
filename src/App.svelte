@@ -16,6 +16,7 @@
     cipherHashed, 
     cipherUrl
   } from "./constants"
+  import DevCredits from "./routes/DevCredits/DevCredits.svelte";
   
   export let url = "";
 </script>
@@ -67,5 +68,9 @@
       nextPuzzle={cipherUrl}
       lastAns={sudokuHashed}
     />
+    <Route path="devCredits" component={DevCredits}/>
+  </div>
+  <div>
+    
   </div>
 </Router>
