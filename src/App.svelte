@@ -47,7 +47,7 @@ import Link from "svelte-routing/src/Link.svelte";
         nextPuzzle={identifyYUrl}
       />
       <Route path={picrossUrl} component={Picross}
-        nextPuzzle="http://uknowwhoim.github.io"
+        nextPuzzle="http://puzzle-maze.herokuapp.com"
         lastAns={identifyXHashed}
       />
       <Route path={cipherUrl} component={Cipher}
