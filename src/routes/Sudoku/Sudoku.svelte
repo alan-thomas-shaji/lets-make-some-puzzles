@@ -3,7 +3,7 @@
 	import {navigate} from "svelte-routing";
 	import { getNextUrl, verifyHash } from "../../common";
 	import { sudokuHashed } from "../../constants";
-import Button from "../../components/button.svelte";
+	import Button from "../../components/button.svelte";
 
 	export let nextPuzzle;
 	var sudoku = [
@@ -27,7 +27,7 @@ import Button from "../../components/button.svelte";
 
 
 <div id="sudoku-wrap" class="p-4 text-lg text-center text-orange">
-	<h1 class="text-5xl font-bold">Sudoku</h1>
+	<h1 class="text-5xl">Sudoku</h1>
 	<div id="content" class="m-2 p-2">
 		<p>Find the first row of the sudoku</p>	
 	</div>
