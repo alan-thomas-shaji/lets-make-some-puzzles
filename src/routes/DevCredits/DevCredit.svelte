@@ -2,11 +2,12 @@
     export let name;
     export let githubUrl;
     export let imgLink;
+    export let puzzles;
 </script>
-
-<div class="p-4 text-center">
-    <a href="{githubUrl}" style="color: #f6f4f4" class="text-2xl no-underline">
-        <img src={imgLink} alt={name} class="h-24 w-24 inline rounded-full border border-gray-100 shadow-sm"/><br/>
-        {name}
-    </a>
+<div class="p-4 flex items-center cursor-pointer w-64" on:click="{window.open(githubUrl)}">
+    <img class="w-16 h-16 rounded-full mr-4" src="{imgLink}" alt="Avatar of Writer">
+    <div class="text-xl">
+    <p class="text-orange leading-none">{name}</p>
+    <p class="text-gray-600 text-lg">{puzzles}</p>
+    </div>
 </div>
