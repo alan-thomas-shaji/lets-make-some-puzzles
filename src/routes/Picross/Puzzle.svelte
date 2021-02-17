@@ -8,7 +8,6 @@
   import { getNextUrl, verifyHash, verifyPreviousAns } from "../../common";
   import { picrossHashed } from "../../constants";
   import Button from "../../components/button.svelte";
- 
 
   let grid = solutionGrid;
 
@@ -56,9 +55,13 @@
         placeholder="Whose logo is it?"
         name="answer"
       />
-
-      <Button handlerFunction={submit} text="Check"/>
-
+      <Button handlerFunction={submit} text="Check" />
+      <button
+        class="invisible cursor: default;"
+        on:click={() => {
+          window.location.href = "https://slack.com/intl/en-in/";
+        }}
+      />
     </div>
   </div>
 </main>
