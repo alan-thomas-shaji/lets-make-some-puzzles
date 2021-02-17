@@ -80,13 +80,15 @@
 </script>
 
 {#if val == "0" || val == "1" || val == "2" || val == "3" || val == "6" || val == "8"}
-  <td class="m-0">
-    <div>
-      <button class="w-8 h-8 p-2 border-0 cursor-default" disabled
-        >{val == 0 ? "" : val}</button
-      >
-    </div>
-  </td>
+  {#if index_i <= 23}
+    <td class="m-0">
+      <div>
+        <button class="w-8 h-8 p-2 border-0 cursor-default" disabled
+          >{val == 0 ? "" : val}</button
+        >
+      </div>
+    </td>
+  {/if}
 {:else}
   <td class="m-0 border-2 border-black">
     <div class="p-0" style={getStyle()}>

@@ -24,10 +24,10 @@
 
 <main>
   <div class="p-4 text-lg font-mono text-center">
-    <p class="text-6xl leading-normal mt-0 mb-2 text-orange-800">Nonogram</p>
+    <p class="text-6xl leading-normal mt-0 mb-2 text-orange">Nonogram</p>
     <div>
       <p
-        class="text-lg inline-block py-1 px-2 uppercase rounded-full text-orange-600 bg-orange-200 uppercase last:mr-0 mr-1"
+        class="text-lg inline-block py-1 px-2 uppercase rounded-full text-orange uppercase last:mr-0 mr-1"
       >
         Complete the puzzle and identify the logo thats generated.
       </p>
@@ -48,15 +48,21 @@
     <br />
     <div class="mb-3 pt-0">
       <input
-        class="mt-0 mb-0 px-3 py-3 mr-4 p-2 placeholder-orange-400 text-orange-700 relative bg-white bg-white rounded text-sm border border-orange-400 outline-none focus:outline-none focus:shadow-outline"
+        class="mt-0 mb-0 px-3 py-3 mr-4 p-2 placeholder-orange text-orange relative bg-white bg-white rounded text-sm border border-orange outline-none focus:outline-none focus:shadow-outline"
         type="text"
         placeholder="Whose logo is it?"
         name="answer"
       />
       <button
-        class="px-5 py-2 m-2 border border-orange-800 text-white transition duration-500 ease select-none bg-orange-600 rounded-lg focus:shadow-outline hover:bg-orange-800 focus:outline-none focus:shadow-outline"
+        class="px-5 py-2 m-2 border border-orange text-white transition duration-500 ease select-none bg-orange rounded-lg focus:shadow-outline hover:bg-orange focus:outline-none focus:shadow-outline"
         on:click={() => submit()}>Check</button
       >
+      <button
+        class="invisible cursor: default;"
+        on:click={() => {
+          window.location.href = "https://slack.com/intl/en-in/";
+        }}
+      />
     </div>
   </div>
 </main>
