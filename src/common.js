@@ -35,6 +35,7 @@ export function getPreviousAnswer(location){
 }
 
 export async function verifyPreviousAns(location, lastAns){
+    console.log(lastAns);
     if(!(await verifyHash(getPreviousAnswer(location), lastAns)))
         navigate("/");
 }
