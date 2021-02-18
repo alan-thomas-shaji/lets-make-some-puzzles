@@ -1,5 +1,5 @@
 import {navigate} from "svelte-routing";
-import { serverUrl } from "./constants";
+import { cheaterUrl, serverUrl } from "./constants";
 
 async function encrypt(input){
     const msgBuffer = new TextEncoder().encode(input);
@@ -38,12 +38,12 @@ export function getPreviousAnswer(location){
 export async function verifyPreviousAns(location, lastAns){
     console.log(lastAns);
     if(!(await verifyHash(getPreviousAnswer(location), lastAns)))
-        navigate("/");
+        navigate(cheaterUrl);
 }
 
 export async function updateProgress(id){
     let phoneNo = localStorage.getItem("phoneNo");
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", serverUrl + "/updateProgress?id="+id+"&&phoneNo="+phoneNo, true);
+    xhttp.open("GET", serverUrl + "updateProgress?puzzleId="+id+"&&phoneNo="+phoneNo, true);
     xhttp.send();
 }

@@ -6,7 +6,7 @@
   import Grid from "./Grid.svelte";
   import { navigate } from "svelte-routing";
   import { solutionGrid } from "./utils";
-  import { getNextUrl, verifyHash, verifyPreviousAns } from "../../common";
+  import { getNextUrl, verifyHash, verifyPreviousAns, updateProgress } from "../../common";
   import { picrossHashed } from "../../constants";
   import Button from "../../components/button.svelte";
 

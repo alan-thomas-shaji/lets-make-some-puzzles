@@ -9,7 +9,7 @@
     
     import { onMount } from "svelte";
     import {navigate} from "svelte-routing";
-    import { getNextUrl, verifyHash, verifyPreviousAns } from "../../common";
+    import { getNextUrl, verifyHash, verifyPreviousAns, updateProgress } from "../../common";
     import Button from "../../components/button.svelte";
 
     async function identifyCheckAns(){

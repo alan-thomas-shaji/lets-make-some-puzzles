@@ -15,10 +15,14 @@
     identifyYUrl, 
     cipherHashed, 
     cipherUrl,
-mazeUrl
+mazeUrl,
+detailsUrl,
+cheaterUrl
   } from "./constants"
   import DevCredits from "./routes/DevCredits/DevCredits.svelte";
 import Link from "svelte-routing/src/Link.svelte";
+import Details from "./routes/Details/Details.svelte";
+import Cheater from "./routes/Cheater/Cheater.svelte";
   
   export let url = "";
 </script>
@@ -63,7 +67,7 @@ import Link from "svelte-routing/src/Link.svelte";
       />
       
       <Route path={identifyXUrl} component={Identify} 
-        id=4
+        id=6
         identifyHashedAnswer={identifyXHashed}
         images={["IdentifyX/_.jpg", "IdentifyX/__.jpg", "IdentifyX/___.png"]}
         clues={["DeHavillandussMoth", "FrenchLegionOfHonour", "Taglines"]}
@@ -72,7 +76,7 @@ import Link from "svelte-routing/src/Link.svelte";
       />
       
       <Route path={identifyYUrl} component={Identify}
-        id=6
+        id=4
         identifyHashedAnswer={identifyYHashed}
         images={["IdentifyY/_.jpg", "IdentifyY/__.jpg", "IdentifyY/___.jpg"]}
         clues={["IdentifyY/extraClue", "IdentifyY/additionalClue", "IdentifyY/moreClues"]}
@@ -81,6 +85,8 @@ import Link from "svelte-routing/src/Link.svelte";
         lastAns={sudokuHashed}
       />
       <Route path="devCredits" component={DevCredits}/>
+      <Route path="{detailsUrl}" component={Details}/>
+      <Route path="{cheaterUrl}" component={Cheater}/>
     </div>
   <footer class="py-5 p-4 w-full bg-black text-center">
     <Link to="/devCredits" class="text-light">Contributors</Link>
