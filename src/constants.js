@@ -11,4 +11,9 @@ export const identifyXUrl = "/identifyX";
 export const identifyXHashed = "10280d2a462632de4ed1327d190d955b0ec6726b14635d4bb6eddb8de0821343";
 
 export const picrossUrl = "/picross";
-export const picrossHashed = "877c3aec832cd41012590679bdb84ebe25e5ebbd71b6b81722b48b129feb76ae"
+export const picrossHashed = "877c3aec832cd41012590679bdb84ebe25e5ebbd71b6b81722b48b129feb76ae";
+
+export const serverUrl = "https://puzzle-maze.herokuapp.com/"
+
+export const mazeUrl = serverUrl;
+

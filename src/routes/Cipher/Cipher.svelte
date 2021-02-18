@@ -1,11 +1,12 @@
 <script>
     export let nextPuzzle;
+    export let id;
     export let lastAns;
     import { onMount } from "svelte";
     import Button from "../../components/button.svelte";
     import Box from './Box.svelte';
     import {navigate} from "svelte-routing";
-    import { getNextUrl, verifyHash, verifyPreviousAns } from '../../common';
+    import { getNextUrl, updateProgress, verifyHash, verifyPreviousAns } from '../../common';
     import { cipherHashed } from "../../constants";
 
     async function submit() {
@@ -17,7 +18,10 @@
             alert("Try Again");
     }
     
-    onMount(() => verifyPreviousAns(window.location, lastAns));
+    onMount(() => {
+      verifyPreviousAns(window.location, lastAns);
+      updateProgress(id);
+    });
   </script>
   
   <style>

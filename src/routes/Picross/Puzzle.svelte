@@ -1,6 +1,7 @@
 <script>
   export let nextPuzzle;
   export let lastAns;
+  export let id;
   import { onMount } from "svelte";
   import Grid from "./Grid.svelte";
   import { navigate } from "svelte-routing";
@@ -21,7 +22,10 @@
     console.log("submit");
   }
 
-  onMount(() => verifyPreviousAns(window.location, lastAns));
+  onMount(() => {
+      verifyPreviousAns(window.location, lastAns);
+      updateProgress(id);
+    });
 </script>
 
 <main>

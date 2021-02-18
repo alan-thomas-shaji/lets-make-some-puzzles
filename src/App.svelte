@@ -14,7 +14,8 @@
     identifyYHashed, 
     identifyYUrl, 
     cipherHashed, 
-    cipherUrl
+    cipherUrl,
+mazeUrl
   } from "./constants"
   import DevCredits from "./routes/DevCredits/DevCredits.svelte";
 import Link from "svelte-routing/src/Link.svelte";
@@ -44,13 +45,16 @@ import Link from "svelte-routing/src/Link.svelte";
   <div class="flex h-screen flex-col">
     <div class="flex-1 overflow-y-auto">
       <Route path={sudokuUrl} component={Sudoku}
+        id=2
         nextPuzzle={identifyYUrl}
       />
       <Route path={picrossUrl} component={Picross}
-        nextPuzzle="http://puzzle-maze.herokuapp.com"
+        id=7
+        nextPuzzle={mazeUrl}
         lastAns={identifyXHashed}
       />
       <Route path={cipherUrl} component={Cipher}
+        id=5
         nextPuzzle={identifyXUrl}
         lastAns={identifyYHashed}
       />
@@ -59,6 +63,7 @@ import Link from "svelte-routing/src/Link.svelte";
       />
       
       <Route path={identifyXUrl} component={Identify} 
+        id=4
         identifyHashedAnswer={identifyXHashed}
         images={["IdentifyX/_.jpg", "IdentifyX/__.jpg", "IdentifyX/___.png"]}
         clues={["DeHavillandussMoth", "FrenchLegionOfHonour", "Taglines"]}
@@ -67,6 +72,7 @@ import Link from "svelte-routing/src/Link.svelte";
       />
       
       <Route path={identifyYUrl} component={Identify}
+        id=6
         identifyHashedAnswer={identifyYHashed}
         images={["IdentifyY/_.jpg", "IdentifyY/__.jpg", "IdentifyY/___.jpg"]}
         clues={["IdentifyY/extraClue", "IdentifyY/additionalClue", "IdentifyY/moreClues"]}
