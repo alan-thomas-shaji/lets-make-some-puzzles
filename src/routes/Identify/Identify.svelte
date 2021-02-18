@@ -26,8 +26,8 @@
         image.src = "image.alt";
     }
     
-    onMount(() => {
-      verifyPreviousAns(window.location, lastAns);
+    onMount(async () => {
+      await verifyPreviousAns(window.location, lastAns);
       updateProgress(id);
     });
 </script>

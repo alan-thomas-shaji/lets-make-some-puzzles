@@ -2,11 +2,22 @@
     import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
     import Button from "../../components/button.svelte";
-    import { serverUrl, sudokuUrl } from "../../constants";
+    import { initialPuzzle, serverUrl, sudokuUrl } from "../../constants";
 
     onMount(() => {
-        if(localStorage.getItem("phoneNo") !== null)
-            navigate(sudokuUrl);
+        if(localStorage.getItem("UUID") !== null){
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+                if(xhttp.readyState == 4 && xhttp.status == 200){
+                    localStorage.setItem("UUID", JSON.parse(xhttp.response).id);
+                    navigate(JSON.parse(xhttp.response).url);
+                }
+                else
+                    localStorage.removeItem("UUID");
+            }
+            xhttp.open("GET", serverUrl + "getProgress?id="+localStorage.getItem("UUID"), false)
+            xhttp.send();
+        }
     });
 
     function verifyForm(){
@@ -16,8 +27,15 @@
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
-                localStorage.setItem("phoneNo", document.getElementsByName("phone")[0].value);
-                navigate(sudokuUrl);
+                console.log(xhttp.response);
+                if(Number.parseInt(xhttp.response)){
+                    localStorage.setItem("UUID", xhttp.response)
+                    navigate(initialPuzzle);
+                }
+                else{
+                    localStorage.setItem("UUID", JSON.parse(xhttp.response).id)
+                    navigate(JSON.parse(xhttp.response).url);
+                }
             }
         }
         console.log(serverUrl+"createProgress");

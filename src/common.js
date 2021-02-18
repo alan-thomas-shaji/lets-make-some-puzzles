@@ -39,19 +39,18 @@ export function getPreviousAnswer(location){
 }
 
 export async function verifyPreviousAns(location, lastAns){
-    console.log(lastAns);
     if(!(await verifyHash(getPreviousAnswer(location), lastAns)))
         navigate(cheaterUrl);
 }
 
 export async function updateProgress(id){
-    let phoneNo = localStorage.getItem("phoneNo");
+    let uuid = localStorage.getItem("UUID");
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", serverUrl + "updateProgress?puzzleId="+id+"&&phoneNo="+phoneNo, true);
+    xhttp.open("GET", serverUrl + "updateProgress?puzzleId="+id+"&&UUID="+uuid, true);
     xhttp.send();
 }
 
 export function generateMazeUrl(){
-    let phone = localStorage.getItem("phoneNo");
-    return mazeUrl + "?phoneNo=" + phone;
+    let uuid = localStorage.getItem("UUID");
+    return mazeUrl + "?UUID=" + uuid;
 }

@@ -1,3 +1,6 @@
+export const idiotTestUrl = "/initial";
+export const idiotTestHashed = "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08";
+
 export const sudokuUrl = "/sudoku";
 export const sudokuHashed = "8d2cbaf16d573434b9776abf73a1ae5ab0b7295a2449f3c469d76ccc66162173";
 
@@ -17,7 +20,8 @@ export const cheaterUrl = "/cheater";
 
 export const detailsUrl = "";
 
-export const serverUrl = "https://puzzle-maze.herokuapp.com/";
+export const serverUrl = "http://localhost:8000/";//"https://puzzle-maze.herokuapp.com/";
 
 export const mazeUrl = serverUrl;
 
+export const initialPuzzle = idiotTestUrl;

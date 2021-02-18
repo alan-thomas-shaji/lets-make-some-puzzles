@@ -16,13 +16,16 @@
     cipherHashed, 
     cipherUrl,
     detailsUrl,
-    cheaterUrl
+    cheaterUrl,
+    idiotTestHashed,
+    idiotTestUrl
   } from "./constants"
   import DevCredits from "./routes/DevCredits/DevCredits.svelte";
   import Link from "svelte-routing/src/Link.svelte";
   import Details from "./routes/Details/Details.svelte";
   import Cheater from "./routes/Cheater/Cheater.svelte";
   import { generateMazeUrl } from "./common";
+  import InitialPuzzle from "./routes/InitialPuzzle/InitialPuzzle.svelte";
   
   export let url = "";
 </script>
@@ -48,8 +51,13 @@
 <Router url={url}>
   <div class="flex h-screen flex-col">
     <div class="flex-1 overflow-y-auto">
+      <Route path={idiotTestUrl} component={InitialPuzzle}
+        id=1
+        nextPuzzle={() => identifyYUrl}
+      />
       <Route path={sudokuUrl} component={Sudoku}
         id=2
+        lastAns={idiotTestHashed}
         nextPuzzle={() => identifyYUrl}
       />
       <Route path={picrossUrl} component={Picross}
@@ -63,7 +71,9 @@
         lastAns={identifyYHashed}
       />
       <Route path="bomb" component={Bomb}
-        nextPuzzle=""
+        id=3
+        nextPuzzle={() => identifyYUrl}
+        lastAns={sudokuHashed}
       />
       
       <Route path={identifyXUrl} component={Identify} 
