@@ -1,5 +1,5 @@
 import {navigate} from "svelte-routing";
-import { cheaterUrl, serverUrl } from "./constants";
+import { cheaterUrl, mazeUrl, serverUrl } from "./constants";
 
 async function encrypt(input){
     const msgBuffer = new TextEncoder().encode(input);
@@ -22,8 +22,11 @@ function findGetParameter(parameterName, location) {
     return result;
 }
 
-export function getNextUrl(url, lastAns){
-    return String(url) + "?lastAns=" + String(lastAns);
+export function getNextUrl(urlCallable, lastAns, multiple=false){
+    let url = urlCallable();
+    if(!multiple)
+        return String(url) + "?lastAns=" + String(lastAns);
+    return String(url) + "&&lastAns=" + String(lastAns);
 }
 
 export async function verifyHash(userAns, realHashedAns){
@@ -46,4 +49,9 @@ export async function updateProgress(id){
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", serverUrl + "updateProgress?puzzleId="+id+"&&phoneNo="+phoneNo, true);
     xhttp.send();
+}
+
+export function generateMazeUrl(){
+    let phone = localStorage.getItem("phoneNo");
+    return mazeUrl + "?phoneNo=" + phone;
 }

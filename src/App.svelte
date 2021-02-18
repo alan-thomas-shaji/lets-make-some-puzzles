@@ -15,14 +15,14 @@
     identifyYUrl, 
     cipherHashed, 
     cipherUrl,
-mazeUrl,
-detailsUrl,
-cheaterUrl
+    detailsUrl,
+    cheaterUrl
   } from "./constants"
   import DevCredits from "./routes/DevCredits/DevCredits.svelte";
-import Link from "svelte-routing/src/Link.svelte";
-import Details from "./routes/Details/Details.svelte";
-import Cheater from "./routes/Cheater/Cheater.svelte";
+  import Link from "svelte-routing/src/Link.svelte";
+  import Details from "./routes/Details/Details.svelte";
+  import Cheater from "./routes/Cheater/Cheater.svelte";
+  import { generateMazeUrl } from "./common";
   
   export let url = "";
 </script>
@@ -50,16 +50,16 @@ import Cheater from "./routes/Cheater/Cheater.svelte";
     <div class="flex-1 overflow-y-auto">
       <Route path={sudokuUrl} component={Sudoku}
         id=2
-        nextPuzzle={identifyYUrl}
+        nextPuzzle={() => identifyYUrl}
       />
       <Route path={picrossUrl} component={Picross}
         id=7
-        nextPuzzle={mazeUrl}
+        nextPuzzle={generateMazeUrl}
         lastAns={identifyXHashed}
       />
       <Route path={cipherUrl} component={Cipher}
         id=5
-        nextPuzzle={identifyXUrl}
+        nextPuzzle={() => identifyXUrl}
         lastAns={identifyYHashed}
       />
       <Route path="bomb" component={Bomb}
@@ -71,7 +71,7 @@ import Cheater from "./routes/Cheater/Cheater.svelte";
         identifyHashedAnswer={identifyXHashed}
         images={["IdentifyX/_.jpg", "IdentifyX/__.jpg", "IdentifyX/___.png"]}
         clues={["DeHavillandussMoth", "FrenchLegionOfHonour", "Taglines"]}
-        nextPuzzle={picrossUrl}
+        nextPuzzle={() => picrossUrl}
         lastAns={cipherHashed}
       />
       
@@ -81,7 +81,7 @@ import Cheater from "./routes/Cheater/Cheater.svelte";
         images={["IdentifyY/_.jpg", "IdentifyY/__.jpg", "IdentifyY/___.jpg"]}
         clues={["IdentifyY/extraClue", "IdentifyY/additionalClue", "IdentifyY/moreClues"]}
         description="(Provide full name starting with A)"
-        nextPuzzle={cipherUrl}
+        nextPuzzle={() => cipherUrl}
         lastAns={sudokuHashed}
       />
       <Route path="devCredits" component={DevCredits}/>

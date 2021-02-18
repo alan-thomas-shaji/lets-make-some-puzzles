@@ -16,7 +16,7 @@
     let val = document.getElementsByName("answer")[0].value.toLocaleLowerCase();
 
     if (await verifyHash(val, picrossHashed))
-      navigate(getNextUrl(nextPuzzle, val));
+      navigate(getNextUrl(nextPuzzle, val, true));
     else alert("Try Again");
 
     console.log("submit");
