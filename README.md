@@ -1,12 +1,15 @@
 # Lets Make Some Puzzles
 
-Run 
+Run
+
 ```
 yarn install
 yarn start
-````
-#### For adding new Puzzle 
-- Head over to src/routes/. 
+```
+
+#### For adding new Puzzle
+
+- Head over to src/routes/.
 - Create a folder and add your files there.
 - Goto src/App.svelte and Import your component and Add to routes
 
