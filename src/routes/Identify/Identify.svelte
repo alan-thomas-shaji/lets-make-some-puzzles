@@ -1,4 +1,5 @@
 <script>
+    export let id;
     export let images;
     export let clues;
     export let identifyHashedAnswer;
@@ -8,8 +9,8 @@
     
     import { onMount } from "svelte";
     import {navigate} from "svelte-routing";
-    import { getNextUrl, verifyHash, verifyPreviousAns } from "../../common";
-import Button from "../../components/button.svelte";
+    import { getNextUrl, verifyHash, verifyPreviousAns, updateProgress } from "../../common";
+    import Button from "../../components/button.svelte";
 
     async function identifyCheckAns(){
         let val = document.getElementById("identifyInput").value;
@@ -25,7 +26,10 @@ import Button from "../../components/button.svelte";
         image.src = "image.alt";
     }
     
-    onMount(() => verifyPreviousAns(window.location, lastAns));
+    onMount(() => {
+      verifyPreviousAns(window.location, lastAns);
+      updateProgress(id);
+    });
 </script>
 
 <div class="text-center text-orange">

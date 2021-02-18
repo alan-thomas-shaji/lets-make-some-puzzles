@@ -14,10 +14,15 @@
     identifyYHashed, 
     identifyYUrl, 
     cipherHashed, 
-    cipherUrl
+    cipherUrl,
+    detailsUrl,
+    cheaterUrl
   } from "./constants"
   import DevCredits from "./routes/DevCredits/DevCredits.svelte";
-import Link from "svelte-routing/src/Link.svelte";
+  import Link from "svelte-routing/src/Link.svelte";
+  import Details from "./routes/Details/Details.svelte";
+  import Cheater from "./routes/Cheater/Cheater.svelte";
+  import { generateMazeUrl } from "./common";
   
   export let url = "";
 </script>
@@ -44,14 +49,17 @@ import Link from "svelte-routing/src/Link.svelte";
   <div class="flex h-screen flex-col">
     <div class="flex-1 overflow-y-auto">
       <Route path={sudokuUrl} component={Sudoku}
-        nextPuzzle={identifyYUrl}
+        id=2
+        nextPuzzle={() => identifyYUrl}
       />
       <Route path={picrossUrl} component={Picross}
-        nextPuzzle="http://puzzle-maze.herokuapp.com"
+        id=7
+        nextPuzzle={generateMazeUrl}
         lastAns={identifyXHashed}
       />
       <Route path={cipherUrl} component={Cipher}
-        nextPuzzle={identifyXUrl}
+        id=5
+        nextPuzzle={() => identifyXUrl}
         lastAns={identifyYHashed}
       />
       <Route path="bomb" component={Bomb}
@@ -59,22 +67,26 @@ import Link from "svelte-routing/src/Link.svelte";
       />
       
       <Route path={identifyXUrl} component={Identify} 
+        id=6
         identifyHashedAnswer={identifyXHashed}
         images={["IdentifyX/_.jpg", "IdentifyX/__.jpg", "IdentifyX/___.png"]}
         clues={["DeHavillandussMoth", "FrenchLegionOfHonour", "Taglines"]}
-        nextPuzzle={picrossUrl}
+        nextPuzzle={() => picrossUrl}
         lastAns={cipherHashed}
       />
       
       <Route path={identifyYUrl} component={Identify}
+        id=4
         identifyHashedAnswer={identifyYHashed}
         images={["IdentifyY/_.jpg", "IdentifyY/__.jpg", "IdentifyY/___.jpg"]}
         clues={["IdentifyY/extraClue", "IdentifyY/additionalClue", "IdentifyY/moreClues"]}
         description="(Provide full name starting with A)"
-        nextPuzzle={cipherUrl}
+        nextPuzzle={() => cipherUrl}
         lastAns={sudokuHashed}
       />
       <Route path="devCredits" component={DevCredits}/>
+      <Route path="{detailsUrl}" component={Details}/>
+      <Route path="{cheaterUrl}" component={Cheater}/>
     </div>
   <footer class="py-5 p-4 w-full bg-black text-center">
     <Link to="/devCredits" class="text-light">Contributors</Link>

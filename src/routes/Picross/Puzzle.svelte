@@ -1,11 +1,12 @@
 <script>
   export let nextPuzzle;
   export let lastAns;
+  export let id;
   import { onMount } from "svelte";
   import Grid from "./Grid.svelte";
   import { navigate } from "svelte-routing";
   import { solutionGrid } from "./utils";
-  import { getNextUrl, verifyHash, verifyPreviousAns } from "../../common";
+  import { getNextUrl, verifyHash, verifyPreviousAns, updateProgress } from "../../common";
   import { picrossHashed } from "../../constants";
   import Button from "../../components/button.svelte";
 
@@ -15,13 +16,16 @@
     let val = document.getElementsByName("answer")[0].value.toLocaleLowerCase();
 
     if (await verifyHash(val, picrossHashed))
-      navigate(getNextUrl(nextPuzzle, val));
+      navigate(getNextUrl(nextPuzzle, val, true));
     else alert("Try Again");
 
     console.log("submit");
   }
 
-  onMount(() => verifyPreviousAns(window.location, lastAns));
+  onMount(() => {
+      verifyPreviousAns(window.location, lastAns);
+      updateProgress(id);
+    });
 </script>
 
 <main>
