@@ -37,6 +37,17 @@
     }; 
   }
 
+  function wrongClick()
+  {
+	for (let index = 0; index < 2; index++) {
+		const interval = setInterval(() => (count > 0) ? count-- : count, 1000);
+    	return () => {
+      		clearInterval(interval);
+    };
+		
+	}
+  }
+
 
 
   function getcolour()
@@ -105,16 +116,16 @@
 		<h1 class="game">Here's the bomb, diffuse it before the timer goes off! Cutting one wire from this bomb can result in it defusing... Hold up, cutting the wrong wire would result in the timer going off faster! Let's see if you're lucky enough, OR, if you're skilled enough to go down deep into seeing how the bomb works!</h1>
 		<center><img class="main-bomb" src="Bomb/gameplay.jpg" alt="bg" width="500"></center>
 		<h1>Which wire would you cut?</h1>
-		<button style="background-color: green" class="bt-1 text-center p-2 m-2 rounded-lg text-black" id="green1" on:click="{handleClick}">Green1</button>
-		<button style="background-color: yellow" class="bt-5 text-center p-2 m-2 rounded-lg text-black" id="yellow1" on:click="{handleClick}">Yellow1</button>
-		<button style="background-color: blue" class="bt-2 text-center p-2 m-2 rounded-lg text-black" id="blue1" on:click="{handleClick}">Blue1</button>
-		<button style="background-color: orange" class="bt-4 text-center p-2 m-2 rounded-lg text-black" id="orange1" on:click="{handleClick}">Orange1</button>
+		<button style="background-color: green" class="bt-1 text-center p-2 m-2 rounded-lg text-black" id="green1" on:click="{wrongClick}">Green1</button>
+		<button style="background-color: yellow" class="bt-5 text-center p-2 m-2 rounded-lg text-black" id="yellow1" on:click="{wrongClick}">Yellow1</button>
+		<button style="background-color: blue" class="bt-2 text-center p-2 m-2 rounded-lg text-black" id="blue1" on:click="{wrongClick}">Blue1</button>
+		<button style="background-color: orange" class="bt-4 text-center p-2 m-2 rounded-lg text-black" id="orange1" on:click="{wrongClick}">Orange1</button>
 		<button style="background-color: red" class="bt-3 text-center p-2 m-2 rounded-lg text-black" id="red1" on:click="{() => (open = !open)}">Red1</button>
-		<button style="background-color: green" class="bt-1 text-center p-2 m-2 rounded-lg text-black" id="green2" on:click="{handleClick}">Green2</button>
-		<button style="background-color: yellow" class="bt-5 text-center p-2 m-2 rounded-lg text-black" id="yellow2" on:click="{handleClick}">Yellow2</button>
-		<button style="background-color: blue" class="bt-2 text-center p-2 m-2 rounded-lg text-black" id="blue2" on:click="{handleClick}">Blue2</button>
-		<button style="background-color: red" class="bt-3 text-center p-2 m-2 rounded-lg text-black" id="red2" on:click="{handleClick}">Red2</button>
-		<button style="background-color: orange" class="bt-4 text-center p-2 m-2 rounded-lg text-black" id="orange2" on:click="{handleClick}">Orange2</button>
+		<button style="background-color: green" class="bt-1 text-center p-2 m-2 rounded-lg text-black" id="green2" on:click="{wrongClick}">Green2</button>
+		<button style="background-color: yellow" class="bt-5 text-center p-2 m-2 rounded-lg text-black" id="yellow2" on:click="{wrongClick}">Yellow2</button>
+		<button style="background-color: blue" class="bt-2 text-center p-2 m-2 rounded-lg text-black" id="blue2" on:click="{wrongClick}">Blue2</button>
+		<button style="background-color: red" class="bt-3 text-center p-2 m-2 rounded-lg text-black" id="red2" on:click="{wrongClick}">Red2</button>
+		<button style="background-color: orange" class="bt-4 text-center p-2 m-2 rounded-lg text-black" id="orange2" on:click="{wrongClick}">Orange2</button>
 	</div>
 	
 	</div>
