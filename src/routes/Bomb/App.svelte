@@ -1,119 +1,133 @@
 <script>
-	import {onMount} from 'svelte';
-	import {navigate} from "svelte-routing";
-	import {getNextUrl, updateProgress, verifyPreviousAns} from "../../common";
-	
-	export let nextPuzzle;
-	export let lastAns;
-	export let id;
-	
-	let level = 10; 
-	let count = 100;
-	
-	import Button from "../../components/button.svelte";
-	
-	onMount(async() => {
-		await verifyPreviousAns(window.location, lastAns);
-		updateProgress(id);
-		if(localStorage.getItem('counter') === null)
-			localStorage.setItem('counter', count);
-		else
-			count = localStorage.getItem('counter');
-		return() => localStorage.setItem('counter', count);
-	});
-	
-  function pop() {
-    alert("Your time is over. The bomb went off! Woops");
+  import { onMount } from "svelte";
+  import { navigate } from "svelte-routing";
+  import { getNextUrl, updateProgress, verifyPreviousAns } from "../../common";
+  import Button from "../../components/button.svelte";
+
+  export let nextPuzzle;
+  export let lastAns;
+  export let id;
+
+  const timeLeft = 60;
+  let timer = timeLeft;
+  let flag = true;
+  let interval;
+
+  onMount(async () => {
+    await verifyPreviousAns(window.location, lastAns);
+    updateProgress(id);
+
+    let item = localStorage.getItem("timeLeft");
+
+    if (item == 0 || item === null) localStorage.setItem("timeLeft", timeLeft);
+  });
+
+  function toggleStyling() {
+    document.getElementById("headerForBomb").style.display = "block";
+    document.getElementById("startingMsge").style.display = "none";
+    document.getElementById("gamebar").style.display = "block";
+  }
+
+  function revertStyling() {
+    document.getElementById("headerForBomb").innerHTML = "";
     document.getElementById("gamebar").style.display = "none";
-    this.style.visibility = "hidden";
+    document.getElementById("headerForBomb").style.display = "none";
+    document.getElementById("startingMsge").style.display = "block";
+  }
+
+  function setCountdown() {
+    interval = setInterval(() => {
+      timer > 0 ? timer-- : timer;
+      console.log(timer);
+
+      localStorage.setItem("timeLeft", timer);
+      document.getElementById("headerForBomb").innerHTML =
+        "You have " + timer + " seconds left";
+
+      if (timer == 0) retry();
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+      retry();
+    };
   }
 
   function handleClick() {
-    document.getElementById("gamebar").style.display = "block";
-    document.getElementById("start-button").style.display = "none";
-    const interval = setInterval(() => (count > 0 ? count-- : count), 1000);
-    return () => {
-      clearInterval(interval);
-    };
+    if (!flag) flag = true;
+    toggleStyling();
+    setCountdown();
   }
+
+  function luckyClick() {}
 
   function wrongClick() {
-    for (let index = 0; index < 2; index++) {
-      const interval = setInterval(() => (count > 0 ? count-- : count), 1000);
-      return () => {
-        clearInterval(interval);
-      };
+    for (let i = 0; i < 2; i++)
+      setInterval(() => (timer > 0 ? timer-- : timer), 1000);
+
+    if (timer == 0) retry();
+    return () => {
+      clearInterval(interval);
+      retry();
+    };
+  }
+
+  function victory() {
+    revertStyling();
+    clearInterval(interval);
+
+    open = !open;
+    navigate(getNextUrl(nextPuzzle, "red1"));
+  }
+
+  function retry() {
+    if (flag) {
+      alert("Woops, your time is over. The bomb exploded!");
+      revertStyling();
+      clearInterval(interval);
+      flag = false;
     }
+
+    localStorage.setItem("timeLeft", 0);
+    timer = timeLeft;
   }
-
-	function victory(){
-		open = !open;
-		navigate(getNextUrl(nextPuzzle, "red1"));
-	}
-
-
-    function popup()
-  {
-	  alert("Yaaayyy!!!!You Won");
-	  document.getElementById("gamebar").style.display = "none";
-  }
-
-  let open = false;
-  function closeOnClickOutside(node) {
-    const handleClick = (event) => {
-      if (!node.contains(event.target)) {
-        open = false;
-        // If you want to prevent the outside click from doing anything else.
-        event.stopImmediatePropagation();
-      }
-    };
-
-    document.addEventListener("click", handleClick, { capture: true });
-    return {
-      destroy() {
-        document.removeEventListener("click", handleClick, { capture: true });
-      },
-    };
-  }
-
 </script>
 
-<main class="text-3xl text-center">
-  <div class="bg-dark">
-    <h1 class="text-5xl uppercase text-orange">
-      Hello Player! Welcome to level <strong class="text-orange">{level}</strong
-      >
-    </h1>
-    <h2 class="text-orange bg-dark p-4">
-      Let's test your skill to the next level! Let's see if you can diffuse this
-      bomb before it explodes.
-    </h2>
-    <br />
+<div class="flex flex-col h-screen">
+  <div class="p-4 text-lg text-center text-orange">
+    <p class="text-5xl leading-normal mt-0 mb-2">
+      Diffuse the Bomb before the timer goes off
+    </p>
+    <div id="startingMsge" style="display:block;">
+      <center>
+        <br />
+        <img src="Bomb/main-bomb.jpg" width="400" alt="front-bomb" />
+        <br />
+        <Button
+          color="orange"
+          handlerFunction={handleClick}
+          text="Start diffusing!"
+        />
+      </center>
+    </div>
     <center>
-      <img src="Bomb/main-bomb.jpg" width="400" alt="front-bomb" />
       <br />
-      <button
-        class="start bg-orange text-center p-2 m-2 block rounded-lg"
-        id="start-button"
-        on:click={handleClick}>Start diffusing!</button
-      >
-      <div class="App text-orange">
-        You have <strong>{count}</strong> seconds left
-      </div>
-      <br />
-      {#if count === 0}
-        {pop()};
+      {#if timeLeft === 0}
+        {console.log("bnahn")}
+        {retry()};
       {/if}
 
-      <div id="gamebar" class="bg-dark" style="display:none;">
+      <div id="gamebar" class="m-4" style="display:none;">
         <div class="game text-orange">
-          <h1 class="game">
-            Here's the bomb, diffuse it before the timer goes off! Cutting one
-            wire from this bomb can result in it defusing... Hold up, cutting
-            the wrong wire would result in the timer going off faster! Let's see
-            if you're lucky enough, OR, if you're skilled enough to go down deep
-            into seeing how the bomb works!
-          </h1>
+          <p
+            class="text-lg inline-block mb-12 uppercase rounded uppercase shadow-lg game"
+          >
+            Here's the bomb, diffuse it before the timer goes off! <br />
+            Cutting one wire from this bomb can result in it defusing...
+            <br /><br />Hold up, cutting the wrong wire would result in the
+            timer going off faster!<br />
+            Let's see if you're lucky enough, OR, if you're skilled enough to go
+            down deep into seeing how the bomb works!
+          </p>
           <center
             ><img
               class="main-bomb"
@@ -122,77 +136,37 @@
               width="500"
             /></center
           >
-          <h1>Which wire would you cut?</h1>
+          <br />
+          <p class="text-2xl"><strong>Which wire would you cut?</strong></p>
+          <br />
           <Button
-            color="green"
-            id="green1"
+            color="green-900"
             handlerFunction={wrongClick}
             text="Green1"
           />
           <Button
-            color="yellow"
-            id="yellow1"
+            color="yellow-400"
             handlerFunction={wrongClick}
             text="Yellow1"
           />
+          <Button color="blue-500" handlerFunction={wrongClick} text="Blue1" />
+          <Button color="orange" handlerFunction={wrongClick} text="Orange1" />
+          <Button color="red-500" handlerFunction={victory} text="Red1" />
           <Button
-            color="blue"
-            id="blue1"
-            handlerFunction={wrongClick}
-            text="Blue1"
-          />
-          <Button
-            color="orange"
-            id="orange1"
-            handlerFunction={wrongClick}
-            text="Orange1"
-          />
-          <Button
-            color="red"
-            id="red1"
-            handlerFunction={victory}
-            text="Red1"
-          />
-          <Button
-            color="green"
-            id="green2"
+            color="green-900"
             handlerFunction={wrongClick}
             text="Green2"
           />
           <Button
-            color="yellow"
-            id="yellow2"
+            color="yellow-400"
             handlerFunction={wrongClick}
             text="Yellow2"
           />
-          <Button
-            color="blue"
-            id="blue2"
-            handlerFunction={wrongClick}
-            text="Blue2"
-          />
-          <Button
-            color="red"
-            id="red2"
-            handlerFunction={wrongClick}
-            text="red2"
-          />
-          <Button
-            color="orange"
-            id="orange2"
-            handlerFunction={wrongClick}
-            text="Orange2"
-          />
+          <Button color="blue-500" handlerFunction={luckyClick} text="Blue2" />
+          <Button color="red-500" handlerFunction={wrongClick} text="Red2" />
+          <Button color="orange" handlerFunction={wrongClick} text="Orange2" />
         </div>
       </div>
-
-      {#if open}
-        {popup()};
-
-        <div class="popup" style="position:absolute" use:closeOnClickOutside>
-          <h1>YAAAY!! YOU WON!</h1>
-        </div>
-      {/if}
     </center>
   </div>
-</main>
+</div>

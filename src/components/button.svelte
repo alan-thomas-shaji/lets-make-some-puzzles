@@ -14,8 +14,12 @@
     color +
     " hover:bg-" +
     hover;
-
-  console.log(className);
 </script>
 
-<button class={className} on:click={() => handlerFunction()}>{text}</button>
+<button
+  class={className}
+  on:click={() => {
+    handlerFunction();
+    console.log(className);
+  }}>{text}</button
+>

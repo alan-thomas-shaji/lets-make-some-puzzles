@@ -20,47 +20,43 @@
     idiotTestHashed,
     idiotTestUrl,
     bombHashed,
-    bombUrl
-  } from "./constants"
+    bombUrl,
+  } from "./constants";
   import DevCredits from "./routes/DevCredits/DevCredits.svelte";
   import Link from "svelte-routing/src/Link.svelte";
   import Details from "./routes/Details/Details.svelte";
   import Cheater from "./routes/Cheater/Cheater.svelte";
   import { generateMazeUrl } from "./common";
   import InitialPuzzle from "./routes/InitialPuzzle/InitialPuzzle.svelte";
-  
+
   export let url = "";
 </script>
 
-<style global>
-  /* purgecss start ignore */
-  @tailwind base;
-  @tailwind components;
-  /* purgecss end ignore */
-
-  @tailwind utilities;
-
-  body{
-    padding: 0;
-    background-color: #3e3939;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  }
-</style>
-
-<Router url={url}>
+<Router {url}>
   <div class="flex h-screen flex-col">
+    <header
+      class="py-5 bg-black text-white text-center"
+      id="headerForBomb"
+      style="display: none"
+    />
     <div class="flex-1 overflow-y-auto mt-3">
-      <Route path={idiotTestUrl} component={InitialPuzzle}
-        id=1
+      <Route
+        path={idiotTestUrl}
+        component={InitialPuzzle}
+        id="1"
         nextPuzzle={() => sudokuUrl}
       />
-      <Route path={sudokuUrl} component={Sudoku}
-        id=2
+      <Route
+        path={sudokuUrl}
+        component={Sudoku}
+        id="2"
         lastAns={idiotTestHashed}
         nextPuzzle={() => bombUrl}
       />
-      <Route path="{bombUrl}" component={Bomb}
-        id=3
+      <Route
+        path={bombUrl}
+        component={Bomb}
+        id="3"
         nextPuzzle={() => identifyYUrl}
         lastAns={sudokuHashed}
       />
@@ -71,13 +67,17 @@
         nextPuzzle={() => identifyXUrl}
         lastAns={identifyYHashed}
       />
-      <Route path={picrossUrl} component={Picross}
-        id=7
+      <Route
+        path={picrossUrl}
+        component={Picross}
+        id="7"
         nextPuzzle={generateMazeUrl}
         lastAns={identifyXHashed}
       />
-      <Route path={identifyXUrl} component={Identify} 
-        id=6
+      <Route
+        path={identifyXUrl}
+        component={Identify}
+        id="6"
         identifyHashedAnswer={identifyXHashed}
         images={["IdentifyX/_.jpg", "IdentifyX/__.jpg", "IdentifyX/___.png"]}
         clues={["DeHavillandussMoth", "FrenchLegionOfHonour", "Taglines"]}
@@ -110,3 +110,18 @@
   </div>
 </Router>
 
+<style global>
+  /* purgecss start ignore */
+  @tailwind base;
+  @tailwind components;
+  /* purgecss end ignore */
+
+  @tailwind utilities;
+
+  body {
+    padding: 0;
+    background-color: #3e3939;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
+  }
+</style>

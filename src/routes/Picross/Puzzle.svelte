@@ -34,8 +34,8 @@
 </script>
 
 <main>
-  <div class="p-4 text-lg font-mono text-center">
-    <p class="text-6xl leading-normal mt-0 mb-2 text-orange">Nonogram</p>
+  <div class="p-4 text-lg text-center text-orange">
+    <p class="text-5xl leading-normal mt-0 mb-2">Nonogram</p>
     <div>
       <p
         class="text-lg inline-block py-1 px-2 uppercase rounded-full text-orange uppercase last:mr-0 mr-1"
