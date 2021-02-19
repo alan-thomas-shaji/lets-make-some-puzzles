@@ -58,7 +58,14 @@
     setCountdown();
   }
 
-  function luckyClick() {}
+  function luckyClick() {
+    let element = document.getElementsByClassName("visible")[0];
+
+    element.classList.remove("visible");
+    element.classList.add("invisible");
+
+    wrongClick();
+  }
 
   function wrongClick() {
     for (let i = 0; i < 2; i++)
@@ -111,10 +118,6 @@
     </div>
     <center>
       <br />
-      {#if timeLeft === 0}
-        {console.log("bnahn")}
-        {retry()};
-      {/if}
 
       <div id="gamebar" class="m-4" style="display:none;">
         <div class="game text-orange">
@@ -149,8 +152,11 @@
             handlerFunction={wrongClick}
             text="Yellow1"
           />
+          <button
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-purple-500 bg-purple-500"
+            on:click={wrongClick}>Purple1</button
+          >
           <Button color="blue-500" handlerFunction={wrongClick} text="Blue1" />
-          <Button color="orange" handlerFunction={wrongClick} text="Orange1" />
           <Button color="red-500" handlerFunction={victory} text="Red1" />
           <Button
             color="green-900"
@@ -163,8 +169,15 @@
             text="Yellow2"
           />
           <Button color="blue-500" handlerFunction={luckyClick} text="Blue2" />
-          <Button color="red-500" handlerFunction={wrongClick} text="Red2" />
-          <Button color="orange" handlerFunction={wrongClick} text="Orange2" />
+          <button
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-red-500 bg-red-500"
+            on:click={wrongClick}>Red2</button
+          >
+          <Button
+            color="purple-500"
+            handlerFunction={wrongClick}
+            text="Purple2"
+          />
         </div>
       </div>
     </center>
