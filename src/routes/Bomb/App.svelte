@@ -20,6 +20,10 @@
     let item = localStorage.getItem("timeLeft");
 
     if (item == 0 || item === null) localStorage.setItem("timeLeft", timeLeft);
+    else{
+      timer = Number.parseInt(item);
+      handleClick();
+    }
   });
 
   function toggleStyling() {
