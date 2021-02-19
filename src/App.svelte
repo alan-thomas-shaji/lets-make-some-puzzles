@@ -1,19 +1,19 @@
 <script>
-  import { Router, Route } from "svelte-routing";  // Import your files
+  import { Router, Route } from "svelte-routing"; // Import your files
   import Bomb from "./routes/Bomb/App.svelte";
   import Cipher from "./routes/Cipher/Cipher.svelte";
   import Identify from "./routes/Identify/Identify.svelte";
   import Picross from "./routes/Picross/Puzzle.svelte";
   import Sudoku from "./routes/Sudoku/Sudoku.svelte";
   import {
-    picrossUrl, 
-    sudokuHashed, 
-    sudokuUrl, 
-    identifyXHashed, 
-    identifyXUrl, 
-    identifyYHashed, 
-    identifyYUrl, 
-    cipherHashed, 
+    picrossUrl,
+    sudokuHashed,
+    sudokuUrl,
+    identifyXHashed,
+    identifyXUrl,
+    identifyYHashed,
+    identifyYUrl,
+    cipherHashed,
     cipherUrl,
     detailsUrl,
     cheaterUrl,
@@ -46,7 +46,7 @@
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
   body, html{
-    margin: 0;
+    margin: 12px 0px 0px 0px;
   }
 </style>
 
@@ -67,8 +67,10 @@
         nextPuzzle={() => identifyYUrl}
         lastAns={sudokuHashed}
       />
-      <Route path={cipherUrl} component={Cipher}
-        id=5
+      <Route
+        path={cipherUrl}
+        component={Cipher}
+        id="5"
         nextPuzzle={() => identifyXUrl}
         lastAns={identifyYHashed}
       />
@@ -85,22 +87,29 @@
         nextPuzzle={() => picrossUrl}
         lastAns={cipherHashed}
       />
-      
-      <Route path={identifyYUrl} component={Identify}
-        id=4
+
+      <Route
+        path={identifyYUrl}
+        component={Identify}
+        id="4"
         identifyHashedAnswer={identifyYHashed}
         images={["IdentifyY/_.jpg", "IdentifyY/__.jpg", "IdentifyY/___.jpg"]}
-        clues={["IdentifyY/extraClue", "IdentifyY/additionalClue", "IdentifyY/moreClues"]}
+        clues={[
+          "IdentifyY/extraClue",
+          "IdentifyY/additionalClue",
+          "IdentifyY/moreClues",
+        ]}
         description="(Provide full name starting with A)"
         nextPuzzle={() => cipherUrl}
         lastAns={bombHashed}
       />
-      <Route path="devCredits" component={DevCredits}/>
-      <Route path="{detailsUrl}" component={Details}/>
-      <Route path="{cheaterUrl}" component={Cheater}/>
+      <Route path="devCredits" component={DevCredits} />
+      <Route path={detailsUrl} component={Details} />
+      <Route path={cheaterUrl} component={Cheater} />
     </div>
-  <footer class="py-5 p-4 w-full bg-black text-center">
-    <Link to="/devCredits" class="text-light">Contributors</Link>
-  </footer>
+    <footer class="py-5 p-4 w-full bg-black text-center">
+      <Link to="/devCredits" class="text-light">Contributors</Link>
+    </footer>
   </div>
 </Router>
+
