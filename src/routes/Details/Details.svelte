@@ -2,11 +2,22 @@
     import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
     import Button from "../../components/button.svelte";
-    import { serverUrl, sudokuUrl } from "../../constants";
+    import { initialPuzzle, serverUrl } from "../../constants";
 
     onMount(() => {
-        if(localStorage.getItem("phoneNo") !== null)
-            navigate(sudokuUrl);
+        if(localStorage.getItem("UUID") !== null){
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+                if(xhttp.readyState == 4 && xhttp.status == 200){
+                    localStorage.setItem("UUID", JSON.parse(xhttp.response).id);
+                    navigate(JSON.parse(xhttp.response).url);
+                }
+                else
+                    localStorage.removeItem("UUID");
+            }
+            xhttp.open("GET", serverUrl + "getProgress?id="+localStorage.getItem("UUID"), false)
+            xhttp.send();
+        }
     });
 
     function verifyForm(){
@@ -16,8 +27,15 @@
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
-                localStorage.setItem("phoneNo", document.getElementsByName("phone")[0].value);
-                navigate(sudokuUrl);
+                console.log(xhttp.response);
+                if(Number.parseInt(xhttp.response)){
+                    localStorage.setItem("UUID", xhttp.response)
+                    navigate(initialPuzzle);
+                }   
+                else{
+                    localStorage.setItem("UUID", JSON.parse(xhttp.response).id)
+                    navigate(JSON.parse(xhttp.response).url);
+                }
             }
         }
         console.log(serverUrl+"createProgress");
@@ -26,12 +44,61 @@
         xhttp.send("phone="+ phone + "&email=" + email + "&name=" + pName); 
     }
 </script>
-<div class="text-center text-orange">
-    <h1 class="text-5xl">Enter your Details</h1>
-    <div class="p-4">
-        <input class="p-2 m-2" name="name" type="text" placeholder="Name"/><br/>
-        <input class="p-2 m-2" name="email" type="text" placeholder="Email" required/><br/>
-        <input class="p-2 m-2" name="phone" type="text" placeholder="Phone No" required/><br/>
-        <Button handlerFunction={verifyForm} text="Go"/>
+
+<div class="text-orange">
+  <div class="text-center">
+    <h1 class="text-5xl">Welcome to Nine Piceces of Eight</h1>
+    <p
+      class="text-lg inline-block mt-8 py-1 px-2 uppercase rounded-full uppercase bg-light"
+    >
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br />
+      reprehenderit maxime, aperiam expedita, doloremque laborum sed consectetur
+      consequatur.
+    </p>
+  </div>
+  <br />
+  <div class="flex items-center w-full mt-8">
+    <div
+      class="w-full bg-grey rounded shadow-2xl p-8 m-4 md:max-w-sm md:mx-auto"
+    >
+      <h1 class="text-center text-2xl mb-6">Register</h1>
+      <div class="flex flex-col mb-4 md:w-full">
+        <label class="mb-2 uppercase tracking-wide font-bold text-lg" for="name"
+          >Name</label
+        >
+        <input
+          class="p-2 m-2 bg-transparent"
+          name="name"
+          type="text"
+          placeholder="Name"
+        />
+      </div>
+      <div class="flex flex-col mb-4 md:w-full">
+        <label class="mb-2 uppercase font-bold text-lg" for="email">Email</label
+        >
+        <input
+          class="p-2 m-2 bg-transparent"
+          name="email"
+          type="text"
+          placeholder="Email"
+          required
+        />
+      </div>
+      <div class="flex flex-col mb-6 md:w-full">
+        <label class="mb-2 uppercase font-bold text-lg" for="contact"
+          >Contact no.</label
+        >
+        <input
+          class="p-2 m-2 bg-transparent"
+          name="phone"
+          type="text"
+          placeholder="Contact No"
+          required
+        />
+      </div>
+      <div class="text-center">
+        <Button color="orange" handlerFunction={verifyForm} text="Begin" />
+      </div>
     </div>
+  </div>
 </div>

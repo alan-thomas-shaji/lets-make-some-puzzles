@@ -6,7 +6,12 @@
   import Grid from "./Grid.svelte";
   import { navigate } from "svelte-routing";
   import { solutionGrid } from "./utils";
-  import { getNextUrl, verifyHash, verifyPreviousAns, updateProgress } from "../../common";
+  import {
+    getNextUrl,
+    verifyHash,
+    verifyPreviousAns,
+    updateProgress,
+  } from "../../common";
   import { picrossHashed } from "../../constants";
   import Button from "../../components/button.svelte";
 
@@ -23,14 +28,14 @@
   }
 
   onMount(() => {
-      verifyPreviousAns(window.location, lastAns);
-      updateProgress(id);
-    });
+    verifyPreviousAns(window.location, lastAns);
+    updateProgress(id);
+  });
 </script>
 
 <main>
-  <div class="p-4 text-lg font-mono text-center">
-    <p class="text-6xl leading-normal mt-0 mb-2 text-orange">Nonogram</p>
+  <div class="p-4 text-lg text-center text-orange">
+    <p class="text-5xl leading-normal mt-0 mb-2">Nonogram</p>
     <div>
       <p
         class="text-lg inline-block py-1 px-2 uppercase rounded-full text-orange uppercase last:mr-0 mr-1"
@@ -59,7 +64,7 @@
         placeholder="Whose logo is it?"
         name="answer"
       />
-      <Button handlerFunction={submit} text="Check" />
+      <Button color="orange" handlerFunction={submit} text="Check" />
       <button
         class="invisible cursor: default;"
         on:click={() => {
