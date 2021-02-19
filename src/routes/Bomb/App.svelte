@@ -1,10 +1,19 @@
 <script>
 	import {onMount} from 'svelte';
-	let level = 10;
+	import {navigate} from "svelte-routing";
+	import {getNextUrl, updateProgress, verifyPreviousAns} from "../../common";
+	
+	export let nextPuzzle;
+	export let lastAns;
+	export let id;
+	
+	let level = 10; 
 	let count = 100;
 	let colour;
 
 	onMount(async() => {
+		await verifyPreviousAns(window.location, lastAns);
+		updateProgress(id);
 		if(localStorage.getItem('counter') === null)
 		{
 			localStorage.setItem('counter', count);
@@ -79,14 +88,16 @@
       }
     }
 
-
+	function victory(){
+		open = !open;
+		navigate(getNextUrl(nextPuzzle, "red1"));
+	}
 
 
     function popup()
   {
 	  alert("Yaaayyy!!!!You Won");
 	  document.getElementById("gamebar").style.display = "none";
-	  this.style.visibility = "hidden";
   }
 
 
@@ -120,7 +131,7 @@
 		<button style="background-color: yellow" class="bt-5 text-center p-2 m-2 rounded-lg text-black" id="yellow1" on:click="{wrongClick}">Yellow1</button>
 		<button style="background-color: blue" class="bt-2 text-center p-2 m-2 rounded-lg text-black" id="blue1" on:click="{wrongClick}">Blue1</button>
 		<button style="background-color: orange" class="bt-4 text-center p-2 m-2 rounded-lg text-black" id="orange1" on:click="{wrongClick}">Orange1</button>
-		<button style="background-color: red" class="bt-3 text-center p-2 m-2 rounded-lg text-black" id="red1" on:click="{() => (open = !open)}">Red1</button>
+		<button style="background-color: red" class="bt-3 text-center p-2 m-2 rounded-lg text-black" id="red1" on:click="{victory}">Red1</button>
 		<button style="background-color: green" class="bt-1 text-center p-2 m-2 rounded-lg text-black" id="green2" on:click="{wrongClick}">Green2</button>
 		<button style="background-color: yellow" class="bt-5 text-center p-2 m-2 rounded-lg text-black" id="yellow2" on:click="{wrongClick}">Yellow2</button>
 		<button style="background-color: blue" class="bt-2 text-center p-2 m-2 rounded-lg text-black" id="blue2" on:click="{wrongClick}">Blue2</button>

@@ -4,6 +4,9 @@ export const idiotTestHashed = "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822c
 export const sudokuUrl = "/sudoku";
 export const sudokuHashed = "8d2cbaf16d573434b9776abf73a1ae5ab0b7295a2449f3c469d76ccc66162173";
 
+export const bombUrl = "/bomb";
+export const bombHashed = "54baf2d92db3cecdb63c79068e540b46643c19d0acf650f1fc546690a55a1527";
+
 export const identifyYUrl = "/identifyY";
 export const identifyYHashed = "912b92939e8104d9be991887e236602a6e37925111684bd5aba981f1376ce6d1"
 

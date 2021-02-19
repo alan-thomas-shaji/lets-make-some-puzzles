@@ -18,7 +18,9 @@
     detailsUrl,
     cheaterUrl,
     idiotTestHashed,
-    idiotTestUrl
+    idiotTestUrl,
+bombHashed,
+bombUrl
   } from "./constants"
   import DevCredits from "./routes/DevCredits/DevCredits.svelte";
   import Link from "svelte-routing/src/Link.svelte";
@@ -53,29 +55,28 @@
     <div class="flex-1 overflow-y-auto">
       <Route path={idiotTestUrl} component={InitialPuzzle}
         id=1
-        nextPuzzle={() => identifyYUrl}
+        nextPuzzle={() => sudokuUrl}
       />
       <Route path={sudokuUrl} component={Sudoku}
         id=2
         lastAns={idiotTestHashed}
-        nextPuzzle={() => identifyYUrl}
+        nextPuzzle={() => bombUrl}
       />
-      <Route path={picrossUrl} component={Picross}
-        id=7
-        nextPuzzle={generateMazeUrl}
-        lastAns={identifyXHashed}
+      <Route path="{bombUrl}" component={Bomb}
+        id=3
+        nextPuzzle={() => identifyYUrl}
+        lastAns={sudokuHashed}
       />
       <Route path={cipherUrl} component={Cipher}
         id=5
         nextPuzzle={() => identifyXUrl}
         lastAns={identifyYHashed}
       />
-      <Route path="bomb" component={Bomb}
-        id=3
-        nextPuzzle={() => identifyYUrl}
-        lastAns={sudokuHashed}
+      <Route path={picrossUrl} component={Picross}
+        id=7
+        nextPuzzle={generateMazeUrl}
+        lastAns={identifyXHashed}
       />
-      
       <Route path={identifyXUrl} component={Identify} 
         id=6
         identifyHashedAnswer={identifyXHashed}
@@ -92,7 +93,7 @@
         clues={["IdentifyY/extraClue", "IdentifyY/additionalClue", "IdentifyY/moreClues"]}
         description="(Provide full name starting with A)"
         nextPuzzle={() => cipherUrl}
-        lastAns={sudokuHashed}
+        lastAns={bombHashed}
       />
       <Route path="devCredits" component={DevCredits}/>
       <Route path="{detailsUrl}" component={Details}/>

@@ -31,7 +31,7 @@
                 if(Number.parseInt(xhttp.response)){
                     localStorage.setItem("UUID", xhttp.response)
                     navigate(initialPuzzle);
-                }
+                }   
                 else{
                     localStorage.setItem("UUID", JSON.parse(xhttp.response).id)
                     navigate(JSON.parse(xhttp.response).url);

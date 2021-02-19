@@ -1,12 +1,13 @@
 <script>	
 	import SudokuCell from "./SudokuCell.svelte";
 	import {navigate} from "svelte-routing";
-	import { getNextUrl, updateProgress, verifyHash } from "../../common";
+	import { getNextUrl, updateProgress, verifyHash, verifyPreviousAns } from "../../common";
 	import { sudokuHashed } from "../../constants";
 	import Button from "../../components/button.svelte";
 	import { onMount } from "svelte";
 	export let id;
 	export let nextPuzzle;
+	export let lastAns;
 	var sudoku = [
         [5, null, 6, null, null, null],
         [null, null, null, null, 2, null],
@@ -23,7 +24,10 @@
 		else
 			alert("Try Again");
 	}
-	onMount(() => updateProgress(id));
+	onMount(async () => {
+		await verifyPreviousAns(location, lastAns);
+		updateProgress(id);
+	});
 </script>
 
 
