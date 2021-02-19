@@ -19,8 +19,8 @@
     cheaterUrl,
     idiotTestHashed,
     idiotTestUrl,
-bombHashed,
-bombUrl
+    bombHashed,
+    bombUrl
   } from "./constants"
   import DevCredits from "./routes/DevCredits/DevCredits.svelte";
   import Link from "svelte-routing/src/Link.svelte";
@@ -48,7 +48,7 @@ bombUrl
   body, html{
     margin: 0;
   }
-  </style>
+</style>
 
 <Router url={url}>
   <div class="flex h-screen flex-col">
