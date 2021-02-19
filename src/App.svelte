@@ -45,14 +45,11 @@
     background-color: #3e3939;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
-  body, html{
-    margin: 12px 0px 0px 0px;
-  }
 </style>
 
 <Router url={url}>
   <div class="flex h-screen flex-col">
-    <div class="flex-1 overflow-y-auto">
+    <div class="flex-1 overflow-y-auto mt-3">
       <Route path={idiotTestUrl} component={InitialPuzzle}
         id=1
         nextPuzzle={() => sudokuUrl}
