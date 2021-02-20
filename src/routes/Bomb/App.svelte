@@ -151,32 +151,32 @@
             class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-green-900 bg-green-900"
             on:click={wrongClick}>Green1</button>
           <button
-            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-yellow-400 bg-yellow-400"
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none focus:outline-none focus:shadow-outline border border-yellow-400 bg-yellow-400"
             on:click={wrongClick}>Yellow1</button>
           <button
-            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-purple-500 bg-purple-500"
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none focus:outline-none focus:shadow-outline border border-purple-500 bg-purple-500"
             on:click={wrongClick}>Purple1</button>
           <button
             class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-blue-500 bg-blue-500"
             on:click={wrongClick}>Blue1</button>
           <button
-            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-red-500 bg-red-500"
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none focus:outline-none focus:shadow-outline border border-red-500 bg-red-500"
             on:click={victory}>Red1</button
           >
           <button
-            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-green-900 bg-green-900"
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none focus:outline-none focus:shadow-outline border border-green-900 bg-green-900"
             on:click={wrongClick}>Green2</button>
           <button
-            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-yellow-400 bg-yellow-400"
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none focus:outline-none focus:shadow-outline border border-yellow-400 bg-yellow-400"
             on:click={wrongClick}>Yellow2</button>
           <button
-            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-blue-500 bg-blue-500"
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none focus:outline-none focus:shadow-outline border border-blue-500 bg-blue-500"
             on:click={luckyClick}>Blue2</button>
           <button
-            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-red-500 bg-red-500"
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none focus:outline-none focus:shadow-outline border border-red-500 bg-red-500"
             on:click={wrongClick}>Red2</button>
           <button
-            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-purple-500 bg-purple-500"
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none focus:outline-none focus:shadow-outline border border-purple-500 bg-purple-500"
             on:click={wrongClick}>Purple2</button>
         </div>
       </div>
