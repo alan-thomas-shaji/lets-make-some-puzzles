@@ -39,7 +39,7 @@
       id="headerForBomb"
       style="display: none"
     />
-    <div class="flex-1 overflow-y-auto mt-3">
+    <div class="flex-1 overflow-y-auto pt-2">
       <Route
         path={idiotTestUrl}
         component={InitialPuzzle}

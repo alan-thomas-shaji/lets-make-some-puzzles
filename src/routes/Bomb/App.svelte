@@ -147,42 +147,37 @@
           <br />
           <p class="text-2xl"><strong>Which wire would you cut?</strong></p>
           <br />
-          <Button
-            color="green-900"
-            handlerFunction={wrongClick}
-            text="Green1"
-          />
-          <Button
-            color="yellow-400"
-            handlerFunction={wrongClick}
-            text="Yellow1"
-          />
+          <button
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-green-900 bg-green-900"
+            on:click={wrongClick}>Green1</button>
+          <button
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-yellow-400 bg-yellow-400"
+            on:click={wrongClick}>Yellow1</button>
           <button
             class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-purple-500 bg-purple-500"
-            on:click={wrongClick}>Purple1</button
-          >
-          <Button color="blue-500" handlerFunction={wrongClick} text="Blue1" />
-          <Button color="red-500" handlerFunction={victory} text="Red1" />
-          <Button
-            color="green-900"
-            handlerFunction={wrongClick}
-            text="Green2"
-          />
-          <Button
-            color="yellow-400"
-            handlerFunction={wrongClick}
-            text="Yellow2"
-          />
-          <Button color="blue-500" handlerFunction={luckyClick} text="Blue2" />
+            on:click={wrongClick}>Purple1</button>
+          <button
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-blue-500 bg-blue-500"
+            on:click={wrongClick}>Blue1</button>
           <button
             class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-red-500 bg-red-500"
-            on:click={wrongClick}>Red2</button
+            on:click={victory}>Red1</button
           >
-          <Button
-            color="purple-500"
-            handlerFunction={wrongClick}
-            text="Purple2"
-          />
+          <button
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-green-900 bg-green-900"
+            on:click={wrongClick}>Green2</button>
+          <button
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-yellow-400 bg-yellow-400"
+            on:click={wrongClick}>Yellow2</button>
+          <button
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-blue-500 bg-blue-500"
+            on:click={luckyClick}>Blue2</button>
+          <button
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-red-500 bg-red-500"
+            on:click={wrongClick}>Red2</button>
+          <button
+            class="text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none visible focus:outline-none focus:shadow-outline border border-purple-500 bg-purple-500"
+            on:click={wrongClick}>Purple2</button>
         </div>
       </div>
     </center>
