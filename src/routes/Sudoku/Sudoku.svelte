@@ -56,10 +56,10 @@
   </table>
   <div id="ans" class="m-4 p-2 flex items-center justify-center">
     <input
-      class="p-2 bg-transparent placeholder-orange"
-      type="text"
-      placeholder="Enter Answer"
+      class="p-2 m-2 bg-transparent"
       name="ans"
+      type="text"
+      placeholder="Answer here"
     />
     <Button color="orange" handlerFunction={sudokuCheckAns} text="Go" />
   </div>

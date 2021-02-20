@@ -49,10 +49,10 @@
 
     <div class="mt-12" id="answer">
       <input
-        class="text-orange rounded border-2 m-0 font-normal p-1.5 p-2"
-        type="text"
-        placeholder="Enter the answer..."
+        class="p-2 m-2 bg-transparent text-orange"
         name="answer"
+        type="text"
+        placeholder="Who is he?"
       />
       <Button color="orange" handlerFunction={submit} text="Go" />
     </div>
