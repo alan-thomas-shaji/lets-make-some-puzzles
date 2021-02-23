@@ -2,4 +2,3 @@
 /public/build/
 .vscode
 .DS_Store
-serverUrl.js
