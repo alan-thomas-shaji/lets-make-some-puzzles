@@ -31,10 +31,16 @@
     <h1 class="text-orange">Nine pieces of Eight</h1>
     <p class="p-6 text-4xl mt-12">We go live in</p>
     <div class="">
-        <TimerComponent num={days}/>
-        <TimerComponent num={hours}/>
-        <TimerComponent num={minutes}/>
-        <TimerComponent num={seconds}/>
+        <p class="text-lg">
+          <TimerComponent num={days}/>
+          days
+          <TimerComponent num={hours}/>
+          hrs
+          <TimerComponent num={minutes}/>
+          min
+          <TimerComponent num={seconds}/>
+          sec
+        </p>
     </div>
 </div>
 
