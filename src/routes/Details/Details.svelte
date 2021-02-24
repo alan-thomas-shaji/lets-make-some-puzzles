@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
+    import NProgress from "nprogress";
     import Button from "../../components/button.svelte";
     import { initialPuzzle, serverUrl } from "../../constants";
 
@@ -29,6 +30,8 @@
         else{
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function(){
+                if(this.readyState == 4)
+                    NProgress.done();
                 if(this.readyState == 4 && this.status == 200){
                     if(Number.parseInt(xhttp.response)){
                         localStorage.setItem("UUID", xhttp.response)
@@ -38,14 +41,17 @@
                         localStorage.setItem("UUID", JSON.parse(xhttp.response).id)
                         navigate(JSON.parse(xhttp.response).url);
                     }
+
                 }
                 else if(this.readyState == 4 && this.status == 400){
                     alert("Phone number and email should be of the correct format");
                 }
+                
             }
             xhttp.open("POST", serverUrl+"createProgress", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("phone="+ phone + "&email=" + email + "&name=" + pName); 
+            xhttp.send("phone="+ phone + "&email=" + email + "&name=" + pName);
+            NProgress.start();            
         }
     }
 </script>
