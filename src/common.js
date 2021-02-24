@@ -1,5 +1,5 @@
 import { navigate } from "svelte-routing";
-import { cheaterUrl, mazeUrl, serverUrl } from "./constants";
+import { cheaterUrl, mazeUrl, serverUrl, detailsUrl } from "./constants";
 
 async function encrypt(input) {
   const msgBuffer = new TextEncoder().encode(input);
@@ -40,7 +40,9 @@ export function getPreviousAnswer(location) {
 }
 
 export async function verifyPreviousAns(location, lastAns){
-    if(!(await verifyHash(getPreviousAnswer(location), lastAns)))
+    if(localStorage.getItem("UUID") === null)
+        navigate(detailsUrl);
+    else if(!(await verifyHash(getPreviousAnswer(location), lastAns)))
         navigate(cheaterUrl);
 }
 
