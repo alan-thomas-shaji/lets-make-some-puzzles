@@ -17,23 +17,23 @@
   } from "../../common";
   import Button from "../../components/button.svelte";
 
-    function identifyOnError(image){
-        image.onerror = "";
-        image.src = "image.alt";
-    }
-    
-    onMount(async () => {
-        await verifyPreviousAns(window.location, lastAns);
-        updateProgress(id);
-    });
-    
-    async function identifyCheckAns() {
-        let val = document.getElementById("identifyInput").value;
-        val = val.replaceAll(" ", "").toLocaleLowerCase();
-        if (await verifyHash(val, identifyHashedAnswer))
-          navigate(getNextUrl(nextPuzzle, val));
-        else alert("Try Again");
-    }
+  function identifyOnError(image) {
+    image.onerror = "";
+    image.src = "image.alt";
+  }
+
+  onMount(async () => {
+    await verifyPreviousAns(window.location, lastAns);
+    updateProgress(id);
+  });
+
+  async function identifyCheckAns() {
+    let val = document.getElementById("identifyInput").value;
+    val = val.replaceAll(" ", "").toLocaleLowerCase();
+    if (await verifyHash(val, identifyHashedAnswer))
+      navigate(getNextUrl(nextPuzzle, val));
+    else alert("Try Again");
+  }
 </script>
 
 <div class="text-center text-orange">
@@ -64,10 +64,11 @@
   </div>
   <div>
     <input
-      name="ans"
-      placeholder="Answer"
-      class="p-2 mb-8"
       id="identifyInput"
+      class="p-2 m-2 bg-transparent"
+      name="ans"
+      type="text"
+      placeholder="Who is he?"
     />
     <Button color="orange" handlerFunction={identifyCheckAns} text="Go" />
   </div>

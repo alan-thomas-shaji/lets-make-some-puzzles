@@ -5,22 +5,24 @@
     import Button from "../../components/button.svelte";
     import { initialPuzzle, serverUrl } from "../../constants";
 
-    onMount(() => {
-        if(localStorage.getItem("UUID") !== null){
-            let xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function(){
-                if(xhttp.readyState == 4 && xhttp.status == 200){
-                    localStorage.setItem("UUID", JSON.parse(xhttp.response).id);
-                    navigate(JSON.parse(xhttp.response).url);
-                }
-                else
-                    localStorage.removeItem("UUID");
-            }
-            xhttp.open("GET", serverUrl + "getProgress?id="+localStorage.getItem("UUID"), false)
-            xhttp.send();
-        }
-    });
-
+  onMount(() => {
+    if (localStorage.getItem("UUID") !== null) {
+      let xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+          localStorage.setItem("UUID", JSON.parse(xhttp.response).id);
+          navigate(JSON.parse(xhttp.response).url);
+        } else localStorage.removeItem("UUID");
+      };
+      xhttp.open(
+        "GET",
+        serverUrl + "getProgress?id=" + localStorage.getItem("UUID"),
+        false
+      );
+      xhttp.send();
+    }
+  });
+  
     function verifyForm(){
         let phone = document.getElementsByName("phone")[0].value;
         let email = document.getElementsByName("email")[0].value;
@@ -58,17 +60,18 @@
 
 <div class="text-orange">
   <div class="text-center">
-    <h1 class="text-5xl">Welcome to Nine Piceces of Eight</h1>
+    <h1 class="text-5xl">
+      Ahoy maties, <br />Welcome to <strong>Nine Pieces of Eight</strong>
+    </h1>
     <p
-      class="text-lg inline-block mt-8 py-1 px-2 uppercase rounded-full uppercase bg-light"
+      class="text-lg inline-block mt-4 py-1 px-2 uppercase rounded-full uppercase bg-light"
     >
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br />
-      reprehenderit maxime, aperiam expedita, doloremque laborum sed consectetur
-      consequatur.
+      Can you collect them all? Register here and lets find out.
     </p>
+    <br />
   </div>
   <br />
-  <div class="flex items-center w-full mt-8">
+  <div class="flex items-center w-full mt-2">
     <div
       class="w-full bg-grey rounded shadow-2xl p-8 m-4 md:max-w-sm md:mx-auto"
     >

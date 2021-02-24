@@ -59,10 +59,10 @@
     <br />
     <div class="mb-3 pt-0">
       <input
-        class="mt-0 mb-0 px-3 py-3 mr-4 p-2 placeholder-orange text-orange relative bg-white bg-white rounded text-sm border border-orange outline-none focus:outline-none focus:shadow-outline"
+        class="p-2 m-2 bg-transparent"
+        name="answer"
         type="text"
         placeholder="Whose logo is it?"
-        name="answer"
       />
       <Button color="orange" handlerFunction={submit} text="Check" />
       <button
