@@ -32,7 +32,7 @@
   export let url = "";
 </script>
 
-<Router {url}>
+<Router url= {url}>
   <div class="flex h-screen flex-col">
     <header
       class="py-5 bg-black text-white text-center"

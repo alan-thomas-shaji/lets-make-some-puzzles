@@ -26,7 +26,7 @@ export const picrossHashed =
 
 export const cheaterUrl = "/cheater";
 
-export const detailsUrl = "";
+export const detailsUrl = "/";
 
 export const serverUrl = "https://puzzle-maze.herokuapp.com/";
 
