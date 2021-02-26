@@ -112,6 +112,7 @@
       <div class="text-center">
         <Button color="orange" handlerFunction={verifyForm} text="Begin" />
       </div>
+      <p class="text-center text-sm p-2">*Exclusively for RITians</p>
     </div>
   </div>
 </div>
