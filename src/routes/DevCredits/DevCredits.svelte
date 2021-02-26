@@ -38,4 +38,26 @@
       puzzles="Identify"
     />
   </div>
+  <div class="p-4 text-center text-orange" id="thenks">
+    <h2 class="text-4xl mb-10">Special Thenks</h2>
+    <center><img alt="" src="Fun/Bhavani.jpeg" height="300" width="400"/></center>
+    <div
+      class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-3 gap-3"
+    >
+      <DevCredit
+        name="Akhil"
+        imgLink="https://avatars.githubusercontent.com/u/31166322?s=460&u=a3402882c53a14b80c36e9cfb4abe52742c3a6c5&v=4"
+        githubUrl="https://github.com/akhilmhdh"
+      />
+      <DevCredit
+        name="Yarbash"
+        imgLink="Fun/YarbashMain.jpeg"
+        githubUrl="https://github.com/yarbashsaleem"
+      />
+      <DevCredit
+        name="John"
+        imgLink="https://avatars.githubusercontent.com/u/31211464?s=460&u=04b83e4be0b137a36006d7d57e3e063a1d605ca8&v=4"
+        githubUrl="https://github.com/dravog7"
+      />
+  </div>
 </main>
