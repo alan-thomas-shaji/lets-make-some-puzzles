@@ -32,14 +32,14 @@
   export let url = "";
 </script>
 
-<Router {url}>
+<Router url= {url}>
   <div class="flex h-screen flex-col">
     <header
       class="py-5 bg-black text-white text-center"
       id="headerForBomb"
       style="display: none"
     />
-    <div class="flex-1 overflow-y-auto mt-3">
+    <div class="flex-1 overflow-y-auto pt-2">
       <Route
         path={idiotTestUrl}
         component={InitialPuzzle}
