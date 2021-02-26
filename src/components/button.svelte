@@ -20,6 +20,5 @@
   class={className}
   on:click={() => {
     handlerFunction();
-    console.log(className);
   }}>{text}</button
 >

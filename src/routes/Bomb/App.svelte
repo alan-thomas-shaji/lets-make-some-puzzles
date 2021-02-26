@@ -42,7 +42,6 @@
   function setCountdown() {
     interval = setInterval(() => {
       timer > 0 ? timer-- : timer;
-      console.log(timer);
 
       localStorage.setItem("timeLeft", timer);
       document.getElementById("headerForBomb").innerHTML =

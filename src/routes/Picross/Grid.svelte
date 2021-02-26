@@ -8,7 +8,6 @@
   const tailwindClass = " border-0 p-2 m-0 h-8 w-8";
 
   let className = "bl67726579 asdfghjkl" + tailwindClass;
-  console.log(className);
 
   function getStyle() {
     let style = "";

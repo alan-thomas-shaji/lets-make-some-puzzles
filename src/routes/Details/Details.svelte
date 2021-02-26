@@ -29,7 +29,6 @@
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        console.log(xhttp.response);
         if (Number.parseInt(xhttp.response)) {
           localStorage.setItem("UUID", xhttp.response);
           navigate(initialPuzzle);
@@ -39,7 +38,6 @@
         }
       }
     };
-    console.log(serverUrl + "createProgress");
     xhttp.open("POST", serverUrl + "createProgress", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("phone=" + phone + "&email=" + email + "&name=" + pName);
