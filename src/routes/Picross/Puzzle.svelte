@@ -68,12 +68,6 @@
         placeholder="Whose logo is it?"
       />
       <Button color="orange" handlerFunction={submit} text="Check" />
-      <button
-        class="invisible cursor: default;"
-        on:click={() => {
-          window.location.href = "https://slack.com/intl/en-in/";
-        }}
-      />
     </div>
   </div>
 </main>
