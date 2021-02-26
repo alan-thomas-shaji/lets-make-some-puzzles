@@ -36,7 +36,7 @@
     updateClass("bl67726579", "g656e0d0a");
     updateClass("bl67726579", "y79656c6c6f7");
 
-    console.log("reset");
+
   }
 
   function updateUserGrid(i, j) {
@@ -70,7 +70,7 @@
         break;
     }
     let equals = JSON.stringify(userGrid) === JSON.stringify(solutionGrid);
-    console.log(equals);
+
 
     if (equals) {
       updateClass("w7768697465", "bl67726579");

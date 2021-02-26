@@ -26,7 +26,6 @@
       navigate(getNextUrl(nextPuzzle, val, true));
     else alert("Try Again");
 
-    console.log("submit");
   }
 
   onMount(() => {
