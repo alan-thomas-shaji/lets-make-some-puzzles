@@ -16,6 +16,8 @@
   />
   <div class="text-xl">
     <p class="text-orange leading-none">{name}</p>
-    <p class="text-gray-600 text-lg">{puzzles}</p>
+    {#if puzzles}
+      <p class="text-gray-600 text-lg">{puzzles}</p>
+    {/if}
   </div>
 </div>
