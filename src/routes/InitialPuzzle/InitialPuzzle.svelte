@@ -10,13 +10,15 @@
   function checkAnswer() {
     if (document.getElementsByName("ans")[0].value == "test")
       navigate(getNextUrl(nextPuzzle, "test"));
-    else alert("Try Again");
+    else 
+      alert("Try Again");
   }
+  
   onMount(() => updateProgress(id));
 </script>
 
 <div class="text-center text-orange">
-  <h1 class="text-6xl">Are you watching closely?</h1>
+  <h1 class="text-6xl">Are you looking closely?</h1>
   <div class="m-16">
     <input
       class="p-2 m-2 bg-transparent"
