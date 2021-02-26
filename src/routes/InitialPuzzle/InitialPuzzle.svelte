@@ -28,5 +28,6 @@
     />
     <input type="hidden" value="test" name="answer" />
     <Button color="orange" handlerFunction={checkAnswer} text="Go" />
+    <p class="p-2 text-sm text-dark">Hint: Inspect Code</p>
   </div>
 </div>
