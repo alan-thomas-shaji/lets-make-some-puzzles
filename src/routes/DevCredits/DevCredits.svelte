@@ -40,7 +40,7 @@
   </div>
   <div class="p-4 text-center text-orange" id="thenks">
     <h2 class="text-4xl mb-10">Special Thenks</h2>
-    <center><img src="Fun/Bhavani.jpeg" height="300" width="400"/></center>
+    <center><img alt="" src="Fun/Bhavani.jpeg" height="300" width="400"/></center>
     <div
       class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-3 gap-3"
     >
@@ -51,7 +51,7 @@
       />
       <DevCredit
         name="Yarbash"
-        imgLink="Fun/Yarbash.jpeg"
+        imgLink="Fun/YarbashMain.jpeg"
         githubUrl="https://github.com/yarbashsaleem"
       />
       <DevCredit
