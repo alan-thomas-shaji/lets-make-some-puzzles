@@ -17,6 +17,8 @@
 
   let grid = solutionGrid;
 
+  const clue = "I have cities, but no houses. I have mountains, but no trees. I have water, but no fish. What am I?";
+
   async function submit() {
     let val = document.getElementsByName("answer")[0].value.toLocaleLowerCase();
 
@@ -30,6 +32,7 @@
   onMount(() => {
     verifyPreviousAns(window.location, lastAns);
     updateProgress(id);
+    console.log(clue);
   });
 </script>
 
